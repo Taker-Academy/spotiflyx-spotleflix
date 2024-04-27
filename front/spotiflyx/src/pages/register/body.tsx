@@ -4,7 +4,7 @@ import { FORMS, FormProps, Form } from "./Form";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils"
 
-export const Body = () => {
+const Body = () => {
     return (
         <Section className="flex flex-col items-baseline pb-6 items-center gap-4 direction-column w-40 h-full pl-4">
             <h3 className="mb-10 big-text">SignUp to Discover a New World</h3>
@@ -26,3 +26,5 @@ export const Body = () => {
         </Section>
     )
 }
+
+export default Body;
