@@ -1,4 +1,4 @@
-import { Section } from "../Section"
+import { Section } from "../../components/Section"
 import Link from "next/link"
 import { FORMS, FormProps, Form } from "./Form";
 import { Button, buttonVariants } from "@/components/ui/button";

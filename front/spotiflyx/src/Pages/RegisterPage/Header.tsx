@@ -1,4 +1,4 @@
-import { Section } from "../Section";
+import { Section } from "../../components/Section";
 import LogoSpotiflyx from "../../components/logo/logo_spotiflyx-removebg-preview.png";
 import Image from "next/image";
 

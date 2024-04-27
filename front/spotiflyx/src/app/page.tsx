@@ -1,8 +1,8 @@
 import Image from "next/image";
 import LogoSpotiflyx from "../components/logo/logo_spotiflyx.png";
-import { Header } from "../components/RegisterPage/Header";
+import { Header } from "../Pages/RegisterPage/Header";
 import { Spacing } from "@/components/Spacing";
-import { Body } from "../components/RegisterPage/Body";
+import { Body } from "../Pages/RegisterPage/Body";
 
 export default function Home() {
   return (
