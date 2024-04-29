@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from 'react-router-dom';
 import { Section } from "../components/Section";
 import LogoSpotiflyx from "../components/logo/logo_spotiflyx-removebg-preview.png";
 import Image from "next/image";
@@ -7,7 +7,7 @@ export const Header = () => {
     return (
         <header className="w-full">
             <Section className="flex items-baseline pb-6 items-center gap-4 justify-start">
-                <Link href="/register/body">
+                <Link to="/register">
                     <Image
                         src={LogoSpotiflyx}
                         alt="logo spotiflyx"
