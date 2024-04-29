@@ -1,13 +1,13 @@
-import { Section } from "../../components/Section"
-import { Link } from 'react-router-dom';
-import { FORMS, FormProps, Form } from "./Form";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils"
+import { Section } from "../../components/Section";
+import { FORMS, FormProps, Form } from "./Form";
+import { cn } from "@/lib/utils";
+import { Link } from 'react-router-dom';
 
-const Body = () => {
+export const LogIn = () => {
     return (
         <Section className="flex flex-col items-baseline pb-6 items-center gap-4 direction-column w-40 h-full pl-4">
-            <h3 className="mb-10 big-text">SignUp to Discover a New World</h3>
+            <h3 className="mb-10 big-text">Oh you have an account here ?</h3>
             {FORMS.map((project, index) => (
             <Form
                 key={index}
@@ -18,13 +18,11 @@ const Body = () => {
             ))}
             <p className={cn(buttonVariants({ size : "default"}), "size-10 w-full mt-20")}>Welcome !</p>
             <div className="flex flex-row gap-3">
-                <p>Already have an account ?</p>
-                <Link to="/">
-                    <u>LogIn Here !</u>
+                <p>You are maybe new here.</p>
+                <Link to="/register">
+                    <u>Sign Up Here !</u>
                 </Link>
             </div>
         </Section>
-    )
+    );
 }
-
-export default Body;
