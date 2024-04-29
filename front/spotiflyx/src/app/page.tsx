@@ -1,8 +1,10 @@
+'use client'
+
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
-import RegisterMain from "./MainRegister";
-import { Header } from './Header';
-import Body from "./register/body";
+import RegisterMain from "../pages/MainRegister";
+import { Header } from '../pages/Header';
+import Body from "../pages/register/body";
 
 export default function App() {
   return (
