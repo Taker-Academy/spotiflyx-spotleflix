@@ -58,7 +58,6 @@ Vous avez rapidement rédigé une liste de users stories pour le projet. Ci-dess
   - radiobox: "vidéo" / "musique"
   - "nom": Nom du média
   - "lien": Lien permettant de récuperer le contenu depuis l'API corréspondante 
-  
 ### Page de musique ou de vidéo
 - En tant qu'utilisateur, je ne veux pas pouvoir accéder à la page d'une musique ou d'une vidéo si je ne suis pas connecté.
 - En tant qu'utilisateur, je veux pouvoir accéder à la page d'une musique ou d'une vidéo en cliquant sur une bannière de recherche.
