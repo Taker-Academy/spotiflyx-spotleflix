@@ -17,7 +17,7 @@ export const FORMS: FormProps[] = [
     {
         title: "Password",
         value: "password",
-        password: 1,
+        password: 0,
     },
 ]
 

@@ -16,7 +16,7 @@ export const LogIn = () => {
                 password={project.password}
             />
             ))}
-            <p className={cn(buttonVariants({ size : "default"}), "size-10 w-full mt-20")}>Welcome !</p>
+            <p className={cn(buttonVariants({ size : "default"}), "size-10 w-full mt-20")}>Welcome back !</p>
             <div className="flex flex-row gap-3">
                 <p>You are maybe new here.</p>
                 <Link to="/register">
