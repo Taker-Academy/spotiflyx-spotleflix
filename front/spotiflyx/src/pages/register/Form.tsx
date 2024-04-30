@@ -1,6 +1,7 @@
 import { Password } from 'primereact/password';
 import React, { useState } from 'react';
 import { Divider } from 'primereact/divider';
+import { values } from "./body";
 
 export type FormProps = {
     title: string;
@@ -36,20 +37,6 @@ export const FORMS: FormProps[] = [
     },
 ]
 
-const header = <h6>Pick a password</h6>;
-const footer = (
-    <React.Fragment>
-        <Divider />
-        <p className="mt-2">Suggestions</p>
-        <ul className="pl-2 ml-2 mt-0" style={{lineHeight: '1.5'}}>
-            <li>At least one lowercase</li>
-            <li>At least one uppercase</li>
-            <li>At least one numeric</li>
-            <li>Minimum 8 characters</li>
-        </ul>
-    </React.Fragment>
-);
-
 const password = (props: FormProps) => {
     if (props.password === 1)
         return "text"
@@ -58,6 +45,28 @@ const password = (props: FormProps) => {
 }
 
 export const Form = (props: FormProps) => {
+
+    const [value, setValue] = useState('');
+
+    const handleNameChange = (event: any, input:string) => {
+        setValue(event.target.value);
+        if (input === "First name") {
+            values.firstname = value;
+        }
+        if (input === "Last name") {
+            values.lastname = value;
+        }
+        if (input === "email") {
+            values.email = value;
+        }
+        if (input === "Mot de passe") {
+            values.str_password = value;
+        }
+        if (input === "Confimer le mot de passe") {
+            values.str_confirm_password = value;
+        }
+    };
+
     return (
         <div className="w-full">
             <form>
@@ -69,6 +78,8 @@ export const Form = (props: FormProps) => {
                         placeholder={props.value}
                         className="hover:border-white bg-transparent border border-gray-500 rounded p-1"
                         style={{ backdropFilter: 'blur(10px)' }}
+                        value={value}
+                        onChange={() => handleNameChange(event, props.title)}
                     />
                     <style> 
                         {` 
