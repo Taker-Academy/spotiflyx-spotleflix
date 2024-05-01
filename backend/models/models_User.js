@@ -8,28 +8,24 @@ const userSchema = seque.define('User',
     {
         createdAt: {
             type: Sequelize.DataTypes.DATE,
-            required: true,
+            allowNull: false,
         },
         email: {
             type: Sequelize.DataTypes.STRING,
-            required: true,
+            allowNull: false,
         },
         password: {
             type: Sequelize.DataTypes.STRING,
-            required: true,
+            allowNull: false,
         },
         lastName: {
             type: Sequelize.DataTypes.STRING,
-            required: true,
+            allowNull: false,
         },
         firstName: {
             type: Sequelize.DataTypes.STRING,
-            required: true,
+            allowNull: false,
         },
-    },
-    {
-        timestamps: true,
-    }
-);
+    });
 
 module.exports = userSchema;
