@@ -6,3 +6,4 @@ npm install primereact
 npm install classnames
 npm install -g http-server
 npm install lucide-react
+npm install -g react-devtools

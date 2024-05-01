@@ -21,21 +21,24 @@ async function SendRegisterForm(firstname, lastname, email, password) {
 
     // Prepare user information
     DataUser = {
-        "email": email,
         "firstName": firstname,
         "lastName": lastname,
+        "email": email,
         "password": password,
     };
 
     try {
+        console.log(DataUser);
         // Post user data
-        const response = await axios.post(url + "auth/register/", DataUser);
+        const response = await axios.post(url + "/auth/register/", DataUser);
 
         // Handle successful response
-        if (response.data) {
+        if (response.status === 200) {
             return "User Created successfully\n";
+        } if (response.status === 404) {
+            throw new Error('Fuk');
         } else {
-            throw new Error('Oops an error occured\n');
+            throw new Error('Oops an error occurred\n');
         }
     } catch (error) {
         // Handle error
