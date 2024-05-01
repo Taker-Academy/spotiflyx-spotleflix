@@ -1,9 +1,10 @@
-npm install axios
-npm install react-router-dom
-npm install react-router-dom localforage match-sorter sort-by
-npm install @mui/material @emotion/react @emotion/styled
-npm install primereact
-npm install classnames
-npm install -g http-server
-npm install lucide-react
-npm install -g react-devtools
+sudo npm install axios
+sudo npm install react-router-dom
+sudo npm install react-router-dom localforage match-sorter sort-by
+sudo npm install @mui/material @emotion/react @emotion/styled
+sudo npm install primereact
+sudo npm install classnames
+sudo npm install -g http-server
+sudo npm install lucide-react
+sudo npm install -g react-devtools
+sudo npm install -g npx

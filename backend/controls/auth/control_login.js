@@ -20,7 +20,7 @@ async function compareMdp(pass1, pass2)
 
 async function emailAndMdpExists(body) {
     try {
-        const user = await User.findOne({ email: body.email });
+        const user = await User.findOne({where: { email: body.email }});
         console.log(user);
         if (!user) {
             console.log("Mauvais email!");
@@ -40,7 +40,7 @@ async function emailAndMdpExists(body) {
 
 async function getDataWithMail(email) {
     try {
-        const user = await User.findOne({ email: email });
+        const user = await User.findOne({where: { email: email }});
         if (user) {
             return user;
         } else {
@@ -87,7 +87,7 @@ async function errorForLogin(body, res)
 
 async function sendResponse(body)
 {
-    const user = await User.findOne({ email: body.email });
+    const user = await User.findOne({where: { email: body.email }});
     const createTok = await toke.createToken(user);
     const response = {
         ok: true,
