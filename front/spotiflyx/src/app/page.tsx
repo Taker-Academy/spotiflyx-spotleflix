@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
-import RegisterMain from "../pages/MainRegister";
+import RegisterMain from "@/pages/MainRegister";
 import LoginMain from '@/pages/MainLogin';
 import HomeMusicMain from "@/pages/HomeMusicMain";
 

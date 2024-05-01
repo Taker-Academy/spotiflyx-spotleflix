@@ -46,24 +46,34 @@ const password = (props: FormProps) => {
 
 export const Form = (props: FormProps) => {
 
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState({
+        firstname: '',
+        lastname: '',
+        email: '',
+        str_password: '',
+        str_confirm_password: ''
+    });
 
     const handleNameChange = (event: any, input:string) => {
-        setValue(event.target.value);
+        const newValue = event.target.value;
+        setValue(prevState => ({
+            ...prevState,
+            [input.toLowerCase()]: newValue
+        }));
         if (input === "First name") {
-            values.firstname = value;
+            values.firstname = newValue;
         }
         if (input === "Last name") {
-            values.lastname = value;
+            values.lastname = newValue;
         }
         if (input === "email") {
-            values.email = value;
+            values.email = newValue;
         }
         if (input === "Mot de passe") {
-            values.str_password = value;
+            values.str_password = newValue;
         }
         if (input === "Confimer le mot de passe") {
-            values.str_confirm_password = value;
+            values.str_confirm_password = newValue;
         }
     };
 
@@ -78,8 +88,7 @@ export const Form = (props: FormProps) => {
                         placeholder={props.value}
                         className="hover:border-white bg-transparent border border-gray-500 rounded p-1"
                         style={{ backdropFilter: 'blur(10px)' }}
-                        value={value}
-                        onChange={() => handleNameChange(event, props.title)}
+                        onChange={(event) => handleNameChange(event, props.title)}
                     />
                     <style> 
                         {` 
