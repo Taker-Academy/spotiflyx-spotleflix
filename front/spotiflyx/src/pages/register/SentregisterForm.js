@@ -33,17 +33,16 @@ async function SendRegisterForm(firstname, lastname, email, password) {
         const response = await axios.post(url + "/auth/register/", DataUser);
 
         // Handle successful response
-        if (response.status === 200) {
-            return "User Created successfully\n";
-        } if (response.status === 404) {
-            throw new Error('Fuk');
+        if (response.status === 201) {
+            console.log("User Created successfully");
+            return 0;
         } else {
             throw new Error('Oops an error occurred\n');
         }
     } catch (error) {
         // Handle error
         console.error(error);
-        return "error";
+        return 1;
     }
 }
 
