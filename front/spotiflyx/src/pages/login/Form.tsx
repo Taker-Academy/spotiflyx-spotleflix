@@ -1,6 +1,7 @@
 import { Password } from 'primereact/password';
 import React, { useState } from 'react';
 import { Divider } from 'primereact/divider';
+import { values } from "./login";
 
 export type FormProps = {
     title: string;
@@ -43,6 +44,26 @@ const password = (props: FormProps) => {
 }
 
 export const Form = (props: FormProps) => {
+
+    const [value, setValue] = useState({
+        email: '',
+        str_password: '',
+    });
+
+    const handleNameChange = (event: any, input:string) => {
+        const newValue = event.target.value;
+        setValue(prevState => ({
+            ...prevState,
+            [input.toLowerCase()]: newValue
+        }));
+        if (input === "email") {
+            values.email = newValue;
+        }
+        if (input === "Mot de passe") {
+            values.str_password = newValue;
+        }
+    };
+
     return (
         <div className="w-full">
             <form>
@@ -54,6 +75,7 @@ export const Form = (props: FormProps) => {
                         placeholder={props.value}
                         className="hover:border-white bg-transparent border border-gray-500 rounded p-1"
                         style={{ backdropFilter: 'blur(10px)' }}
+                        onChange={(event) => handleNameChange(event, props.title)}
                     />
                     <style> 
                         {` 

@@ -2,20 +2,14 @@ const User = require("../../models/models_User");
 const bcrypt = require('bcrypt');
 const toke = require("../../functionUtils/handlingToken");
 
-async function compareMdp(pass1, pass2)
-{
-    return bcrypt
-        .compare(pass2, pass1)
-        .then( res => {
-            if (res) {
-                return 0;
-            } else {
-                return 1;
-            }
-        })
-        .catch(err => {
-            return false;
-        })
+async function comparePassword(plainPassword, hashedPassword) {
+    try {
+        const match = await bcrypt.compare(plainPassword, hashedPassword);
+        return match;
+    } catch (error) {
+        console.error('Error comparing passwords:', error);
+        return false;
+    }
 }
 
 async function emailAndMdpExists(body) {
@@ -26,8 +20,8 @@ async function emailAndMdpExists(body) {
             console.log("Mauvais email!");
             return 1;
         }
-        const resultMdp = await compareMdp(user.password, body.password);
-        if (resultMdp === 1) {
+        const resultMdp = await comparePassword(user.password, body.password);
+        if (resultMdp === false) {
             console.log("Mauvais mot de passe !");
             return 1;
         }
@@ -95,8 +89,6 @@ async function sendResponse(body)
             token: createTok,
             user: {
                 email: body.email,
-                firstName: body.firstName,
-                lastName: body.lastName,
             }
         }
     };
