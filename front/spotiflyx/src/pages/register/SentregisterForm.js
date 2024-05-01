@@ -1,5 +1,5 @@
-const axios = require('axios'); // Assuming axios is installed via npm
-const url = "http://localhost:8080"
+const axios = require('axios');
+const url = "http://localhost:8080";
 
 function checkValidityAddress(email) {
     let substring = "@";
@@ -29,7 +29,7 @@ async function SendRegisterForm(firstname, lastname, email, password) {
 
     try {
         // Post user data
-        const response = await axios.post(url + "/register/", DataUser);
+        const response = await axios.post(url + "auth/register/", DataUser);
 
         // Handle successful response
         if (response.data) {
