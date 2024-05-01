@@ -6,9 +6,15 @@ const seque = new Sequelize('spotiflyx', process.env.USER_DB, process.env.MDP_DB
 
 const videoSchema = seque.define('Video',
     {
+        id:{
+            type:Sequelize.INTEGER,
+            autoIncrement: true,
+            allowNull: false,
+            primaryKey: true
+        },
         createdAt: {
             type: Sequelize.DataTypes.DATE,
-            required: true,
+            allowNull: false,
         },
         title: {
             type: Sequelize.DataTypes.STRING,
@@ -16,7 +22,6 @@ const videoSchema = seque.define('Video',
         },
         description: {
             type: Sequelize.DataTypes.TEXT,
-            allowNull: false
         },
         videoUrl: {
             type: Sequelize.DataTypes.STRING,
@@ -31,12 +36,28 @@ const videoSchema = seque.define('Video',
             allowNull: false
         },
         likes: {
-            type: Sequelize.DataTypes.ARRAY(Sequelize.DataTypes.INTEGER),
-            defaultValue: []
+            type: Sequelize.TEXT, // Ou Sequelize.JSON
+            defaultValue: '[]', // Valeur par défaut comme une chaîne JSON vide
+            get() {
+                // Analyser la chaîne JSON pour récupérer les données
+                const value = this.getDataValue('likes');
+                return JSON.parse(value);
+            },
+            set(val) {
+                // Convertir les données en chaîne JSON lors de la mise à jour
+                this.setDataValue('likes', JSON.stringify(val));
+            }
         },
         views: {
-            type: Sequelize.DataTypes.ARRAY(Sequelize.DataTypes.INTEGER),
-            defaultValue: []
+            type: Sequelize.TEXT, // Ou Sequelize.JSON
+            defaultValue: '[]',
+            get() {
+                const value = this.getDataValue('views');
+                return JSON.parse(value);
+            },
+            set(val) {
+                this.setDataValue('views', JSON.stringify(val));
+            }
         },
     },
 );

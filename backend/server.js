@@ -16,5 +16,7 @@ app.use(express.urlencoded({extended: false}));
 
 app.use("/auth", require("./routes/routes_auth"));
 
+app.use("/video", require("./routes/routes_video"));
+
 /* LANCEMENT SERVEUR */
 app.listen(port, () => console.log("Server in port " +  port + " is OK !"));
