@@ -2,8 +2,9 @@ const User = require("../../models/models_User");
 const bcrypt = require('bcrypt');
 const toke = require("../../functionUtils/handlingToken");
 
-async function comparePassword(plainPassword, hashedPassword) {
+async function comparePassword(hashedPassword, plainPassword) {
     try {
+        console.log(plainPassword + " <===> " + hashedPassword);
         const match = await bcrypt.compare(plainPassword, hashedPassword);
         return match;
     } catch (error) {
