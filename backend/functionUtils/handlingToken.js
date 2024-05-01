@@ -2,8 +2,9 @@ const jwt = require("jsonwebtoken");
 
 async function createToken(user)
 {
+    console.log("USER TOKEN ===>" + user)
     const payload = {
-        userId: user._id,
+        userId: user.id,
     };
 
     const secretKey = process.env.CRYPT_TOK;

@@ -15,9 +15,8 @@ async function hashPassword(password)
 
 async function emailExists(email) {
     try {
-        console.log("EMAILLL ==> " + email);
-        const user = await User.findOne({ email: email });
-        console.log("userRRRRRRRRRRR ==> " + user);
+        const user = await User.findOne({where: { email: email }});
+        console.log("userRRRRRRRRRRR ==> " + user.email);
         if (user) {
             return 1;
         } else {

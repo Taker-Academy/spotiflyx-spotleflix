@@ -10,7 +10,6 @@ async function initUser()
 {
     const UserModel = sequelize.models.User;
     const userExists = !!UserModel;
-    console.log("usermodelsss ==> " + UserModel);
 
     if (!userExists) {
         await User.sync();

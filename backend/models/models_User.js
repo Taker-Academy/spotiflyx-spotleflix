@@ -6,6 +6,12 @@ const seque = new Sequelize('spotiflyx', process.env.USER_DB, process.env.MDP_DB
 
 const userSchema = seque.define('User',
     {
+        id:{
+            type:Sequelize.INTEGER,
+            autoIncrement:true,
+            allowNull:false,
+            primaryKey:true
+        },
         createdAt: {
             type: Sequelize.DataTypes.DATE,
             allowNull: false,
