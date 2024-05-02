@@ -18,5 +18,7 @@ app.use("/auth", require("./routes/routes_auth"));
 
 app.use("/video", require("./routes/routes_video"));
 
+app.use("/ytb", require("./youtube/routes/routes_search"));
+
 /* LANCEMENT SERVEUR */
 app.listen(port, () => console.log("Server in port " +  port + " is OK !"));
