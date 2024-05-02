@@ -84,7 +84,6 @@ Cette route permet de connecter un utilisateur existant à l'application. Si les
 }
 ```
 
-
 ## Réponse possible
 
 - **200 OK:** Connexion réussie.
@@ -124,7 +123,7 @@ Le serveur renvoie un token JWT qui permettra à l'utilisateur de s'authentifier
 {
     "title": "titre video",
     "description": "je suis une description",
-    "videoUrl": "../url/de/la/video",
+    "videoUrl": "https://www.youtube.com/watch?v=${item.id.videoId}",
     "thumbnailUrl": "../url/de/la/miniature"
 }
 ```
@@ -148,5 +147,6 @@ Le serveur renvoie un token JWT qui permettra à l'utilisateur de s'authentifier
 
 - **201 OK:** Video créé avec succès.
 - **400 Bad Request:** Mauvaise requête, paramètres manquants ou invalides.
+- **401 Bad Token:** Mauvais token JWT.
 - **500 Internal Server Error:** Erreur interne du serveur.
 ---
