@@ -8,3 +8,6 @@ sudo npm install -g http-server
 sudo npm install lucide-react
 sudo npm install -g react-devtools
 sudo npm install -g npx
+sudo npm install @mui/material
+sudo npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
+sudo npm install @mui/system @emotion/react @emotion/styled
