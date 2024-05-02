@@ -7,3 +7,6 @@ npm install classnames
 npm install -g http-server
 npm install lucide-react
 npm install -g react-devtools
+npm install @mui/material
+npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
+npm install @mui/system @emotion/react @emotion/styled
