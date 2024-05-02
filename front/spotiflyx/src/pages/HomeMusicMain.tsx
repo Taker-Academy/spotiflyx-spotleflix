@@ -1,6 +1,6 @@
 import { Spacing } from "@/components/Spacing";
-import { HeaderHome } from "./home_music/HeaderHome";
-import { HomeMusic } from "./home_music/home_music";
+import { HeaderHome } from "./home/HeaderHome";
+import { HomeMusic } from "./home/Home";
 
 export default function HomeMusicMain() {
   return (
