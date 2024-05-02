@@ -1,5 +1,6 @@
 import { Spacing } from "@/components/Spacing";
 import { HeaderHome } from "./home_music/HeaderHome";
+import { HomeMusic } from "./home_music/home_music";
 
 export default function HomeMusicMain() {
   return (
@@ -8,6 +9,8 @@ export default function HomeMusicMain() {
         <HeaderHome/>
 
         <Spacing size="sm"/>
+
+        <HomeMusic/>
 
     </main>
   );

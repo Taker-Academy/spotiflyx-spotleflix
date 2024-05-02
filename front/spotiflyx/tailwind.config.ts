@@ -18,8 +18,8 @@ const config = {
       },
     },
     fontFamily: {
-      youtube: ["var(--font-youtubesansbolds)"],
-      spotify: ["var(--font-gothamboldo)"],
+      'youtube': ["var(--font-youtubesansbolds)"],
+      'spotify': ["var(--font-gothamboldo)"],
     },
     extend: {
       colors: {
