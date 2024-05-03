@@ -36,20 +36,18 @@ const videoSchema = seque.define('Video',
             allowNull: false
         },
         likes: {
-            type: Sequelize.TEXT, // Ou Sequelize.JSON
-            defaultValue: '[]', // Valeur par défaut comme une chaîne JSON vide
+            type: Sequelize.TEXT,
+            defaultValue: '[]',
             get() {
-                // Analyser la chaîne JSON pour récupérer les données
                 const value = this.getDataValue('likes');
                 return JSON.parse(value);
             },
             set(val) {
-                // Convertir les données en chaîne JSON lors de la mise à jour
                 this.setDataValue('likes', JSON.stringify(val));
             }
         },
         views: {
-            type: Sequelize.TEXT, // Ou Sequelize.JSON
+            type: Sequelize.TEXT,
             defaultValue: '[]',
             get() {
                 const value = this.getDataValue('views');

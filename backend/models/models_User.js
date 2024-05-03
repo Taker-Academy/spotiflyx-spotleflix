@@ -32,6 +32,10 @@ const userSchema = seque.define('User',
             type: Sequelize.DataTypes.STRING,
             allowNull: false,
         },
+        favorites: {
+            type: Sequelize.DataTypes.ARRAY(Sequelize.DataTypes.JSONB),
+            defaultValue: []
+        }
     });
 
 module.exports = userSchema;

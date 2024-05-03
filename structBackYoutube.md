@@ -16,19 +16,11 @@ Cette route permet de récupérer les données d'une vidéo Youtube.
 
 - **Authorization (String, required):** Token JWT pour l'authentification.
 
-### Body
+### Endpoint
 
 - **search (String, required):** Phrase de recherche
 - **num (String):** Nombre de vidéo a renvoyer (8 par défaut)
-
-## Exemple de Requête
-
-```json
-{
-    "search": "recherche sur youtube",
-    "num": "8"
-}
-```
+- **requette:** /search?search=valeur1&num=valeur2
 
 ## Format de réponse (200 OK)
 
