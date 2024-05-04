@@ -60,19 +60,13 @@ Cette route permet de récupérer les données d'une vidéo Youtube.
 
 - **Authorization (String, required):** Token JWT pour l'authentification.
 
-### Body
+### Endpoint
 
-- **regionCode (String):** Code des pays où choisir (FR par défaut)
+- **codeRegion (String):** Region ou trouver les vidéos les plus populaire (par défaut FR)
 - **num (String):** Nombre de vidéo a renvoyer (8 par défaut)
+- **requette:** /search?codeRegion=valeur1&num=valeur2
 
 ## Exemple de Requête
-
-```json
-{
-    "regionCode": "FR",
-    "num": "8"
-}
-```
 
 ## Format de réponse (200 OK)
 

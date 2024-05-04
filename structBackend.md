@@ -93,16 +93,16 @@ Cette route permet de connecter un utilisateur existant à l'application. Si les
 
 ---
 
+
 ## Auth
 
 > Prefix: `/video`
 
-### Endpoint [POST] `/create`
+### Endpoint [POST] `/post`
 
 ## Description
 
 Cette route permet de créer une nouvelle video dans la base de données.
-Le serveur renvoie un token JWT qui permettra à l'utilisateur de s'authentifier sur les routes protégées.
 
 ## Paramètres
 
@@ -149,4 +149,152 @@ Le serveur renvoie un token JWT qui permettra à l'utilisateur de s'authentifier
 - **400 Bad Request:** Mauvaise requête, paramètres manquants ou invalides.
 - **401 Bad Token:** Mauvais token JWT.
 - **500 Internal Server Error:** Erreur interne du serveur.
+---
+
+### Endpoint [GET] `/` 🔐
+
+## Description
+
+Cette route permet de récupérer la liste des éléments (vidéos).
+
+## Paramètres
+
+### Header
+
+- **Authorization (String, required):** Token JWT pour l'authentification.
+
+## Format de réponse (200 OK)
+
+```json
+{
+    "ok": true,
+    "data": [
+        {
+            "createdAt": "2023-01-01T00:00:00.000Z",
+            "userId": "user123",
+            "title": "titre video",
+            "description": "je suis une description",
+            "videoUrl": "https://www.youtube.com/watch?v=${item.id.videoId}",
+            "thumbnailUrl": "../url/de/la/miniature",
+            "likes": ["user123, user456"],
+            "views": ["user456", "user789"]
+        },
+    ]
+}
+```
+
+## Réponses Possibles
+- **200 OK:** Liste des vidéos récupérée avec succès.
+- **401 Unauthorized:** Mauvais token JWT.
+- **500 Internal Server Error:** Erreur interne du serveur.
+
+---
+
+### Endpoint [GET] `/me` 🔐
+
+## Description
+
+Cette route permet de récupérer la liste des éléments (vidéos) appartenant à l'utilisateur connecté.
+
+## Paramètres
+
+### Header
+
+- **Authorization (String, required):** Token JWT pour l'authentification.
+
+## Format de réponse (200 OK)
+
+```json
+{
+    "ok": true,
+    "data": [
+        {
+            "createdAt": "2023-01-01T00:00:00.000Z",
+            "title": "titre video",
+            "description": "je suis une description",
+            "videoUrl": "https://www.youtube.com/watch?v=${item.id.videoId}",
+            "thumbnailUrl": "../url/de/la/miniature",
+            "likes": ["user123, user456"],
+            "views": ["user456", "user789"]
+        },
+    ]
+}
+```
+
+## Réponses Possibles
+- **200 OK:** Liste des vidéos de l'utilisateur récupérée avec succès.
+- **401 Unauthorized:** Mauvais token JWT.
+- **500 Internal Server Error:** Erreur interne du serveur.
+
+---
+
+### Endpoint [DELETE] `/:id` 🔐
+
+## Description
+
+Cette route permet à l'utilisateur propriétaire de supprimer un élément (vidéo) spécifique.
+
+## Paramètres
+
+### Header
+
+- **Authorization (String, required):** Token JWT pour l'authentification.
+
+### URL Paramètre
+
+- **id (String, required):** ID de l'élément (vidéo) à supprimer.
+
+## Format de réponse (200 OK)
+
+```json
+{
+    "ok": true,
+    "data": {
+        "title": "Titre de la vidéo",
+    }
+}
+```
+
+## Réponses Possibles
+- **200 OK:** Élément supprimé avec succès.
+- **400 Bad Request:** Mauvaise requête, paramètres manquants ou invalides.
+- **401 Unauthorized:** Mauvais token JWT.
+- **403 Forbidden:** L'utilisateur n'est pas le propriétaire de l'élément.
+- **404 Not Found:** Élément non trouvé.
+- **500 Internal Server Error:** Erreur interne du serveur.
+
+---
+
+### Endpoint [POST] `/favorite/put` 🔐
+
+## Description
+
+Cette route permet à l'utilisateur de mettre une vidéos en favoris.
+
+## Paramètres
+
+### Header
+
+- **Authorization (String, required):** Token JWT pour l'authentification.
+
+### Body
+
+- **videoId (String, required):** ID de l'élément (vidéos) à mettre en favoris.
+
+## Format de réponse (201 OK)
+
+```json
+{
+    "ok": true,
+    "message": "post in favorite"
+}
+```
+
+## Réponses Possibles
+- **201 OK:** Favoris enregistré avec succès.
+- **401 Unauthorized:** Mauvais token JWT.
+- **404 Not Found:** Élément non trouvé.
+- **409 Conflict:** Vous avez déjà mis ce post en favris.
+- **500 Internal Server Error:** Erreur interne du serveur.
+
 ---
