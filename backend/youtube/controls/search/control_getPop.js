@@ -14,40 +14,25 @@ function sendError(message)
     return response;
 }
 
-function errorInBody(body, res)
+function errorInBody(regionCode, num, res)
 {
-    if (!(body)) {
-        return 0;
-    }
-    if (typeof body !== "object") {
+    if (isNaN(num)) {
         res.status(400).json(sendError("Mauvaise requête, paramètres manquants ou invalides."));
         return 1;
     }
-    if (body.num) {
-        if (typeof body.num !== "string") {
-            res.status(400).json(sendError("Mauvaise requête, paramètres manquants ou invalides."));
-            return 1;
-        }
-        const num = parseInt(body.num)
-        if (isNaN(num)) {
-            res.status(400).json(sendError("Mauvaise requête, paramètres manquants ou invalides."));
-            return 1;
-        }
-        if (num <= 0) {
-            res.status(400).json(sendError("Mauvaise requête, paramètres manquants ou invalides."));
-            return 1;
-        }
+    if (num <= 0) {
+        res.status(400).json(sendError("Mauvaise requête, paramètres manquants ou invalides."));
+        return 1;
     }
-    if (body.regionCode) {
-        if(typeof body.regionCode !== "string") {
-            res.status(400).json(sendError("Mauvaise requête, paramètres manquants ou invalides."));
-            return 1;
-        }
+    if(typeof regionCode !== "string") {
+        console.log("test");
+        res.status(400).json(sendError("Mauvaise requête, paramètres manquants ou invalides."));
+        return 1;
     }
     return 0;
 }
 
-async function getVideoDetails(videoId, res)
+async function getVideoDetails(videoId)
 {
     try {
         const response = await youtube.videos.list({
@@ -59,8 +44,6 @@ async function getVideoDetails(videoId, res)
 
         return views;
     } catch (error) {
-        res.status(500).json(sendError("Erreur interne du serveur."));
-        console.error('Erreur lors de la récupération des détails de la vidéo :', error);
         return -1;
     }
 }
@@ -80,7 +63,7 @@ async function searchVideos(regionCode, num, res)
             const description = item.snippet.description;
             const thumbnailUrl = item.snippet.thumbnails.default.url;
             const videoUrl = `https://www.youtube.com/watch?v=${item.id.videoId}`;
-            const views = await getVideoDetails(item.id.videoId, res);
+            const views = await getVideoDetails(item.id.videoId);
             if (views === -1) {
                 return [];
             }
@@ -108,23 +91,16 @@ module.exports.setGetPop = async (req, res) => {
     const tokenNID = tokId && tokId.split(' ')[1];
     const resTok = await toke.verifyToken(tokenNID);
 
-    const body = req.body;
-    var num = 8;
-    var r_code = "FR";
     try {
         if (resTok.code === 401) {
             res.status(401).json(sendError("Mauvais token JWT."));
             return;
         }
-        const errorBody = errorInBody(body, res);
+        const r_code = req.query.regionCode || "FR";
+        const num = parseInt(req.query.num) || 8;
+        const errorBody = errorInBody(r_code, num, res);
         if (errorBody === 1) {
             return;
-        }
-        if (body.num) {
-            num = parseInt(body.num);
-        }
-        if (body.regionCode) {
-            num = body.regionCode;
         }
         const resultSearch = await searchVideos(r_code, num, res);
         if (!resultSearch.length)

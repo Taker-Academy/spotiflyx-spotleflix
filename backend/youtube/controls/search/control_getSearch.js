@@ -36,14 +36,19 @@ function errorInBody(search, num, res)
 
 async function getVideoDetails(videoId)
 {
-    const response = await youtube.videos.list({
-        part: 'statistics',
-        id: videoId,
-    });
-    const videoDetails = response.data.items[0].statistics;
-    const views = videoDetails.viewCount;
+    console.log("tesst ==> " );
+    try {
+        const response = await youtube.videos.list({
+            part: 'statistics',
+            id: videoId,
+        });
+        const videoDetails = response.data.items[0].statistics;
+        const views = videoDetails.viewCount;
 
-    return views;
+        return views;
+    } catch (error) {
+        return -1;
+    }
 }
 
 async function searchVideos(searchs, num, res)
@@ -60,6 +65,7 @@ async function searchVideos(searchs, num, res)
             const description = item.snippet.description;
             const thumbnailUrl = item.snippet.thumbnails.default.url;
             const videoUrl = `https://www.youtube.com/watch?v=${item.id.videoId}`;
+            console.log("id ==> " + item.id.videoId);
             const views = await getVideoDetails(item.id.videoId);
             if (views === -1) {
                 return [];
@@ -84,15 +90,15 @@ function sendResponse(videos)
 }
 
 module.exports.setGetSearch = async (req, res) => {
-    // const tokId = req.headers.authorization;
-    // const tokenNID = tokId && tokId.split(' ')[1];
-    // const resTok = await toke.verifyToken(tokenNID);
+    const tokId = req.headers.authorization;
+    const tokenNID = tokId && tokId.split(' ')[1];
+    const resTok = await toke.verifyToken(tokenNID);
 
     try {
-        // if (resTok.code === 401) {
-        //     res.status(401).json(sendError("Mauvais token JWT."));
-        //     return;
-        // }
+        if (resTok.code === 401) {
+            res.status(401).json(sendError("Mauvais token JWT."));
+            return;
+        }
         const search = req.query.search;
         const num = parseInt(req.query.num) || 8;
         const errorBody = errorInBody(search, num, res);
