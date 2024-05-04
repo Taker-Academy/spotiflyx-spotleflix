@@ -31,7 +31,7 @@ export const SearchBar = () => {
                 console.error("An error occure during the call of SearchButton function");
                 return (
                     <div className="flex-grow flex flex-col justify-center">
-                        <p className="text-center text-gray-600">You haven't uploaded any videos yet</p>
+                        <p className="text-center text-gray-600">Cannot find any Home Video. Try to Refresh</p>
                     </div>
                 )
             }
@@ -46,7 +46,7 @@ export const SearchBar = () => {
             console.error("An error occure during the call of SearchButton function");
             return (
                 <div className="flex-grow flex flex-col justify-center">
-                    <p className="text-center text-gray-600">You haven't uploaded any videos yet</p>
+                    <p className="text-center text-gray-600">Cannot find any Home Video. Try to Refresh</p>
                 </div>
             )
         }
