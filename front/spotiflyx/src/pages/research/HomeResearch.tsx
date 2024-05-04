@@ -64,7 +64,7 @@ export const HomeResearch = () => {
 
                     <Spacing size="sm"/>
 
-                    {/* <SearchVideoResult s_ARRAY={s_ARRAY}/> */}
+                    <SearchVideoResult s_ARRAY={s_ARRAY}/>
                 </div>
                 <LatestUploadMusic/>
             </Section>
