@@ -1,8 +1,8 @@
 import { Spacing } from "@/components/Spacing";
 import { HeaderHome } from "./home/HeaderHome";
-import { HomeMusic } from "./home/Home";
+import { HomeResearch } from "./research/HomeResearch";
 
-export default function HomeMusicMain() {
+export default function HomeSearchMain() {
     return (
       <main className="flex min-h-screen flex-col items-center p-10">
 
@@ -10,7 +10,7 @@ export default function HomeMusicMain() {
 
           <Spacing size="sm"/>
 
-          <HomeMusic/>
+          <HomeResearch/>
 
       </main>
     );
