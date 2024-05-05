@@ -94,7 +94,7 @@ Cette route permet de connecter un utilisateur existant à l'application. Si les
 ---
 
 
-## Auth
+## Video
 
 > Prefix: `/video`
 
@@ -297,4 +297,55 @@ Cette route permet à l'utilisateur de mettre une vidéos en favoris.
 - **409 Conflict:** Vous avez déjà mis ce post en favris.
 - **500 Internal Server Error:** Erreur interne du serveur.
 
+---
+
+## Profile
+
+> Prefix: `/profile`
+
+### Endpoint [POST] `/password/modify/`
+
+## Description
+
+Cette route permet de modifier le mot de passe de l'utilisateur dans la base de données.
+
+## Paramètres
+
+### Header
+
+- **Authorization (String, required):** Token JWT pour l'authentification.
+
+### Body
+
+- **password (String, required):** Mot de passe de l'utilisateur.
+- **new_password (String, required):** Nouveau mot de passe de l'utilisateur.
+
+## Exemple de Requête
+
+```json
+{
+    "password": "jean.dupont",
+    "new_password": "jean06.dupont",
+}
+```
+
+## Format de réponse (201 OK)
+
+```json
+{
+    "ok": true,
+    "data": {
+        "token": "eg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQzYWNmZWI0NjU3MTU0Yjg1Y2VjMyIsImlhdCI6MTcwMjExNjA0NywiZXhwIjoxNzAyMjAyNDQ3fQ.hQ2Om2eiNVPquH9npiCC9hOUy3hoizsFVt8QACCPolU",
+    }
+}
+```
+
+## Réponse possible
+
+- **201 OK:** Mot de passe changer avec succès.
+- **400 Bad Request:** Mauvaise requête, paramètres manquants ou invalides.
+- **401 Bad Token:** Mauvais token JWT.
+- **402 Bad Token:** Mot de passe acutel incorrect.
+- **403 Bad Token:** Nouveau mot de passe identique à l'actuel.
+- **500 Internal Server Error:** Erreur interne du serveur.
 ---
