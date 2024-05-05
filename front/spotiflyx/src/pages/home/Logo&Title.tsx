@@ -9,7 +9,7 @@ export type SizeProps = {
 export const LogoAndTitle = ({ size = 300 }: SizeProps) => {
     return (
         <div className="pr-40 flex f-row justify-between items-center">
-            <Link to="/register">
+            <Link to="/home">
                 <Image
                     src={LogoSpotiflyx}
                     alt="logo spotiflyx"

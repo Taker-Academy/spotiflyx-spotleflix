@@ -7,7 +7,7 @@ export const Header = () => {
     return (
         <header className="w-full">
             <Section className="flex items-baseline pb-6 items-center gap-4 justify-start">
-                <Link to="/register">
+                <Link to="/home">
                     <Image
                         src={LogoSpotiflyx}
                         alt="logo spotiflyx"
