@@ -53,12 +53,12 @@ export const ChangePassword: React.FC<ModalProps> = ({ onClose }) => {
                     </div>
                 )
             }
-            if (response.status === 401) {
+            if (response.status === 402) {
                 navigate('/profile');
                 alert("You enter the wrong password");
                 return 1;
             }
-            if (response.status === 402) {
+            if (response.status === 403) {
                 navigate('/profile');
                 alert("Your new password cannot be your old one");
                 return 1;
