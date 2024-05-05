@@ -17,7 +17,6 @@ export const LogIn = () => {
             password: string,) => {
         try {
             const response = await SendLogInForm(email, password);
-            alert(response.status);
             if (response.status === 200) {
                 setReturnValue(0);
                 return 0;
