@@ -13,7 +13,9 @@ export const HeaderAncre = () => {
             <Link to='/favorite'>
                 <FavorieLogo size={38} />
             </Link>
-            <MediaUploadLogo size={34}/>
+            <Link to='/upload'>
+                <MediaUploadLogo size={34}/>
+            </Link>
             <ParameterLogo size={34} />
         </div>
     )

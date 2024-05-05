@@ -8,6 +8,7 @@ import HomeMusicMain from "@/pages/main_pages/HomeMusicMain";
 import HomeSearchMain from '@/pages/main_pages/HomeSearch';
 import { MainProfile } from '@/pages/main_pages/MainProfile';
 import { MainFavorite } from '@/pages/main_pages/MainFavorite';
+import { MainUpload } from '@/pages/main_pages/MainUpload';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/home/search/video" element={<HomeSearchMain/>} />
             <Route path="/profile" element={<MainProfile/>} />
             <Route path="/favorite" element={<MainFavorite/>} />
+            <Route path="/upload" element={<MainUpload/>} />
           </Routes>
         </div>
     </Router>
