@@ -1,6 +1,6 @@
 import { Spacing } from "@/components/Spacing";
-import { Header } from "./Header";
-import { LogIn } from "./login/login";
+import { Header } from "../Header";
+import { LogIn } from "../login/login";
 
 export default function LoginMain() {
   return (
