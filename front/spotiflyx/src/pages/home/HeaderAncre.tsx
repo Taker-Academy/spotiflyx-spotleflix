@@ -2,6 +2,7 @@ import { UserLogo } from '@/components/images/UserLogo';
 import { FavorieLogo } from '@/components/images/FavorieLogo';
 import { ParameterLogo } from '@/components/images/ParameterLogo';
 import { Link } from 'react-router-dom';
+import { MediaUploadLogo } from '@/components/images/MediaUploadLogo';
 
 export const HeaderAncre = () => {
     return (
@@ -10,7 +11,8 @@ export const HeaderAncre = () => {
                 <UserLogo size={38}/>
             </Link>
             <FavorieLogo size={38} />
-            <ParameterLogo size={36} />
+            <MediaUploadLogo size={34}/>
+            <ParameterLogo size={34} />
         </div>
     )
 };
