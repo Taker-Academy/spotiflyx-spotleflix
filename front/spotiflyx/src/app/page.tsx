@@ -9,6 +9,7 @@ import HomeSearchMain from '@/pages/main_pages/HomeSearch';
 import { MainProfile } from '@/pages/main_pages/MainProfile';
 import { MainFavorite } from '@/pages/main_pages/MainFavorite';
 import { MainUpload } from '@/pages/main_pages/MainUpload';
+import { MainParameter } from '@/pages/main_pages/MainParameter';
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
             <Route path="/profile" element={<MainProfile/>} />
             <Route path="/favorite" element={<MainFavorite/>} />
             <Route path="/upload" element={<MainUpload/>} />
+            <Route path="/parameter" element={<MainParameter/>} />
           </Routes>
         </div>
     </Router>

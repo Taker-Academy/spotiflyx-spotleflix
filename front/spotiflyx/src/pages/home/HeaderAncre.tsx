@@ -16,7 +16,9 @@ export const HeaderAncre = () => {
             <Link to='/upload'>
                 <MediaUploadLogo size={34}/>
             </Link>
-            <ParameterLogo size={34} />
+            <Link to='/parameter'>
+                <ParameterLogo size={34} />
+            </Link>
         </div>
     )
 };
