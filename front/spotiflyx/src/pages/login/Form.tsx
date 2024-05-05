@@ -1,7 +1,9 @@
 import { Password } from 'primereact/password';
 import React, { useState } from 'react';
 import { Divider } from 'primereact/divider';
-import { values } from "./login";
+
+export var email = '';
+export var str_password = '';
 
 export type FormProps = {
     title: string;
@@ -56,11 +58,11 @@ export const Form = (props: FormProps) => {
             ...prevState,
             [input.toLowerCase()]: newValue
         }));
-        if (input === "email") {
-            values.email = newValue;
+        if (input === "Email") {
+            email = newValue;
         }
-        if (input === "Mot de passe") {
-            values.str_password = newValue;
+        if (input === "Password") {
+            str_password = newValue;
         }
     };
 
