@@ -2,35 +2,35 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Section } from "../../components/Section";
 import { FORMS, FormProps, Form } from "./Form";
 import { cn } from "@/lib/utils";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import SendLogInForm from "./SendLoginForm";
-
-export const values = {
-    email: '',
-    str_password: '',
-}
+import { email, str_password } from "./Form";
 
 export const LogIn = () => {
 
     const [ReturnValue, setReturnValue] = useState(1);
+    const navigate = useNavigate();
 
     const handleClick = async (
             email: string,
             password: string,) => {
         try {
             const response = await SendLogInForm(email, password);
-            if (response === 0) {
+            alert(response.status);
+            if (response.status === 200) {
                 setReturnValue(0);
                 return 0;
             } else {
-                alert("It seems that you do not have an account");
                 setReturnValue(1);
+                navigate('/login');
+                alert("It seems that you do not have an account");
                 return 1;
             }
         } catch (error) {
             console.error(error);
             setReturnValue(1);
+            navigate('/login');
             return 1;
         }
     };
@@ -55,8 +55,8 @@ export const LogIn = () => {
             <Link to={RedirectToHome()}>
                 <p 
                     onClick={() => handleClick(
-                        values.email,
-                        values.str_password,
+                        email,
+                        str_password
                     )}
                     className={cn(buttonVariants({ size : "default"}), "size-10 w-full mt-20")}
                 >
