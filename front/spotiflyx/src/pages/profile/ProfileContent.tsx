@@ -5,16 +5,29 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils"
 import { useState } from "react";
 import { ChangePassword } from "./ChangePassword";
+import { useNavigate } from "react-router-dom";
+import { LogOutPopUp } from "./LogOutPopUp";
 
 
 export const ProfileContent = () => {
-    const [isPasswordOpen, setIsPasswordOpen] = useState(false);
+    const navigate = useNavigate();
 
-    const openModal = () => {
+    const [isPasswordOpen, setIsPasswordOpen] = useState(false);
+    const [IsLogout, setIsLogout] = useState(false);
+
+    const openLogout = () => {
+        setIsLogout(true);
+    };
+
+    const closeLogout = () => {
+        setIsLogout(false);
+    };
+
+    const openChangePassword = () => {
         setIsPasswordOpen(true);
     };
 
-    const closeModal = () => {
+    const closeChangePassword = () => {
         setIsPasswordOpen(false);
     };
 
@@ -28,12 +41,13 @@ export const ProfileContent = () => {
                 <h3>Email: jean.dupont@gmail.com</h3>
                 <p 
                     className={cn(buttonVariants({ size : "default"}), "size-10 w-full mt-10")}
-                    onClick={openModal}
+                    onClick={openChangePassword}
                     >
                     Change your password here !
                 </p>
                 <p 
                     className={cn(buttonVariants({ size : "default"}), "size-10 w-full mt-10 text-orange-600")}
+                    onClick={openLogout}
                     >
                     Log out here !
                 </p>
@@ -42,7 +56,8 @@ export const ProfileContent = () => {
                     >
                     Delete your account here !
                 </p>
-                {isPasswordOpen && <ChangePassword onClose={closeModal} />}
+                {isPasswordOpen && <ChangePassword onClose={closeChangePassword} />}
+                {IsLogout && <LogOutPopUp onClose={closeLogout} />}
             </div>
 
         </Section>

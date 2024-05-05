@@ -42,6 +42,10 @@ export const ChangePassword: React.FC<ModalProps> = ({ onClose }) => {
         password: string,
         new_password: string,
     ) => {
+        if (!password || !new_password) {
+            alert("please enter a value");
+            return 1;
+        }
         try {
             const response = await SendChangePassword(password, new_password);
             if (response.status === 200) {
