@@ -1,6 +1,6 @@
 import { Spacing } from "@/components/Spacing";
-import { HeaderHome } from "./home/HeaderHome";
-import { HomeResearch } from "./research/HomeResearch";
+import { HeaderHome } from "../home/HeaderHome";
+import { HomeResearch } from "../research/HomeResearch";
 
 export default function HomeSearchMain() {
     return (

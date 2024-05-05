@@ -2,10 +2,11 @@
 
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
-import RegisterMain from "@/pages/MainRegister";
-import LoginMain from '@/pages/MainLogin';
-import HomeMusicMain from "@/pages/HomeMusicMain";
-import HomeSearchMain from '@/pages/HomeSearch';
+import RegisterMain from "@/pages/main_pages/MainRegister";
+import LoginMain from '@/pages/main_pages/MainLogin';
+import HomeMusicMain from "@/pages/main_pages/HomeMusicMain";
+import HomeSearchMain from '@/pages/main_pages/HomeSearch';
+import { MainProfile } from '@/pages/main_pages/MainProfile';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
             <Route path="/register" element={<RegisterMain/>} />
             <Route path="/home" element={<HomeMusicMain/>} />
             <Route path="/home/search/video" element={<HomeSearchMain/>} />
+            <Route path="/profile" element={<MainProfile/>} />
           </Routes>
         </div>
     </Router>

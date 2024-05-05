@@ -1,5 +1,5 @@
-import { Header } from "./Header";
-import Body from "./register/body";
+import { Header } from "../Header";
+import Body from "../register/body";
 
 export default function RegisterMain() {
   return (

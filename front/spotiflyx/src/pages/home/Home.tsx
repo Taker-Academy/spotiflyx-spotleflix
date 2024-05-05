@@ -18,7 +18,7 @@ export const HomeMusic = () => {
 
     if (value === false) {
         return (
-            <Section className="flex f-row w-full">
+            <Section className="flex f-row w-full relative">
                 <LatestUploadVideo/>
                 <div 
                 className="w-70 flex f-row justify-around h-fit pl-10 pr-10"
@@ -41,7 +41,7 @@ export const HomeMusic = () => {
         );
     } else {
         return (
-            <Section className="flex f-row w-full">
+            <Section className="flex f-row w-full relative">
                 <LatestUploadVideo/>
                 <div className="w-70">
                     <div 
