@@ -22,8 +22,6 @@ const SectionHomeVideo = (props: SearchArray) => {
 
 const HomeVideoResult = ({ h_ARRAY }: { h_ARRAY: SearchArray[] }) => {
 
-    console.log(h_ARRAY);
-    console.log("Display");
     if (h_ARRAY) {
         return (
             <Section className="w-100 grid grid-cols-2 grid-rows-4 gap-4">
