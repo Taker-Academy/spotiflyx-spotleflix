@@ -5,11 +5,107 @@ import { useState } from "react"
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { FORMS, Form, title, link, UpdateForm } from "./Form";
+import { useNavigate } from "react-router-dom";
+import { CloseLogo } from "@/components/images/CloseLogo";
+import SendUpload from './SendUpload';
 
 
 export var WhichMedia = '';
 
-const DisplayForm = () => {
+interface ModalProps {
+    onClose: () => void;
+    Type: string;
+}
+
+const SuccessUpload: React.FC<ModalProps> = ({ onClose, Type }) => {
+    return (
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
+        <div className="bg-zinc-800 p-6 rounded-lg">
+            <button onClick={onClose}><CloseLogo size={32}/></button>
+            <div className="mt-4">
+                <p>Your {Type} has been uploaded successfully</p>
+            </div>
+        </div>
+    </div>
+    )
+}
+
+export const DisplayForm = () => {
+
+    const navigate = useNavigate();
+    const [IsSuccesChangeOpen, setIsSuccesChangeOpen] = useState(false);
+
+    const openSuccess = () => {
+        setIsSuccesChangeOpen(true);
+    };
+
+    const closeSuccess = () => {
+        setIsSuccesChangeOpen(false);
+    };
+
+    const VideoUpload = async () => {
+        if (!title || !link) {
+            alert('Please enter a value');
+            return 1;
+        }
+        try {
+            const response = await SendUpload(title, link, WhichMedia);
+            if (response.status === 201) {
+                navigate('/home');
+                openSuccess();
+                return (
+                    <div>
+                        {IsSuccesChangeOpen && <SuccessUpload onClose={closeSuccess} Type={WhichMedia}/>}
+                    </div>
+                )
+            }
+            if (response.status === 401) {
+                navigate('/upload');
+                alert("Error during the process of uploading a video");
+                return 1;
+            }
+        } catch (error) {
+            console.error(error);
+            navigate('/upload');
+            return 1;
+        }
+    }
+
+    const MusicUpload = async () => {
+        if (!title || !link) {
+            alert('Please enter a value');
+            return 1;
+        }
+        try {
+            const response = await SendUpload(title, link, WhichMedia);
+            if (response.status === 201) {
+                navigate('/home');
+                openSuccess();
+                return (
+                    <div>
+                        {IsSuccesChangeOpen && <SuccessUpload onClose={closeSuccess} Type={WhichMedia}/>}
+                    </div>
+                )
+            }
+            if (response.status === 401) {
+                navigate('/upload');
+                alert("Error during the process of uploading a video");
+                return 1;
+            }
+        } catch (error) {
+            console.error(error);
+            navigate('/upload');
+            return 1;
+        }
+    }
+
+    const handleClick = () => {
+        if (WhichMedia === "Video") {
+            return VideoUpload();
+        } else if (WhichMedia === "Music") {
+            return MusicUpload();
+        }
+    }
 
     return (
         <Section className="flex flex-col items-baseline pb-6 items-center gap-4 direction-column w-40 h-full pl-4">
@@ -22,6 +118,7 @@ const DisplayForm = () => {
             ))}
             <p
                 className={cn(buttonVariants({ size : "default"}), "size-10 w-full mt-20")}
+                onClick={() => handleClick()}
             >
                 Upload
             </p>
@@ -67,4 +164,3 @@ export const UploadMusicVideo = () => {
         </Section>
     )
 }
-
