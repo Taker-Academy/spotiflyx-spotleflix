@@ -44,11 +44,7 @@ module.exports.setGetUser = async (req, res) => {
             res.status(401).json(sendError("Mauvais token JWT."));
             return;
         }
-        const user = await recupUser(resTok.data.userId);
-        if (!user.length) {
-            res.status(400).json(sendError("No user"));
-            return;
-        }
+        const user = await User.findOne({where: {id: resTok.data.userId}});
         res.status(200).json(sendResponse(user));
         return;
     } catch (error) {

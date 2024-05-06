@@ -7,12 +7,18 @@ async function SendChangePassword(password, new_password) {
     // Prepare user information
     DataUser = {
         "password": password,
-        "new_password": password,
+        "new_password": new_password,
+    };
+
+    const jwtToken = localStorage.getItem("jwtToken");
+
+    const headers = {
+        Authorization: `Bearer ${jwtToken}`
     };
 
     try {
         // Post user data
-        const response = await axios.post(url + "/profile/password/modify/", DataUser);
+        const response = await axios.put(url + "/profile/password/modify", DataUser, {headers});
 
         // Handle successful response
         if (response.status === 200) {

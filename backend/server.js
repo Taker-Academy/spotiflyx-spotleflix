@@ -16,6 +16,8 @@ app.use(express.urlencoded({extended: false}));
 
 app.use("/auth", require("./routes/routes_auth"));
 
+app.use("/profile", require("./routes/routes_profile"));
+
 app.use("/video", require("./routes/routes_video"));
 
 app.use("/favorite", require("./routes/routes_favorite"));

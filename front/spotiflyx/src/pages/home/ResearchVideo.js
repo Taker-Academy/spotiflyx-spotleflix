@@ -9,11 +9,17 @@ async function ResearchVideo(search_str) {
         "num": 8,
     }
 
+    const jwtToken = localStorage.getItem("jwtToken");
+
+    const headers = {
+        Authorization: `Bearer ${jwtToken}`
+    };
+
     const queryString = Object.keys(DataSearch).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(DataSearch[key])}`).join('&');
     const url_requ = url + `/ytb/search/?${queryString}`;
 
     try {
-        const response = await axios.get(url_requ);
+        const response = await axios.get(url_requ, {headers});
 
         if (response.status === 200) {
             console.log("Video Find successfully");

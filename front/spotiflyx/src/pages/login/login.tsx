@@ -19,7 +19,7 @@ export const LogIn = () => {
         try {
             const response = await SendLogInForm(email, password);
             if (response.status === 200) {
-                setAuthToken(response.data.data.token);
+                localStorage.setItem("jwtToken", response.data.data.token);
                 navigate('/home');
                 return 0;
             } else {

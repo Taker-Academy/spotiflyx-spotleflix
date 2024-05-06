@@ -69,7 +69,7 @@ async function errorRequest(params, res, id)
         return 1;
     }
     const user = await User.findOne({where: {id: id}});
-    const resultMdp = await comparePassword(user.password, body.password);
+    const resultMdp = await comparePassword(user.password, params.password);
     if (resultMdp === false) {
         res.status(402).json(sendError("Mot de passe actuel incorrect."));
         return 1;

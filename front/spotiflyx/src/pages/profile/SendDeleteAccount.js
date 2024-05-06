@@ -3,9 +3,15 @@ const url = "http://localhost:8080";
 
 async function SendDeleteAccount() {
 
+    const jwtToken = localStorage.getItem("jwtToken");
+
+    const headers = {
+        Authorization: `Bearer ${jwtToken}`
+    };
+
     try {
         // Post user data
-        const response = await axios.delete(url + "/profile/delete/");
+        const response = await axios.delete(url + "/profile/delete/", {headers});
 
         // Handle successful response
         if (response.status === 200) {

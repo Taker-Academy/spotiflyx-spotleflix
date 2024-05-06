@@ -3,9 +3,14 @@ const url = "http://localhost:8080";
 
 async function GetHomeVideo() {
     const url_requ = url + "/ytb/popular/";
+    const jwtToken = localStorage.getItem("jwtToken");
+
+    const headers = {
+        Authorization: `Bearer ${jwtToken}`
+    };
 
     try {
-        const response = await axios.get(url_requ);
+        const response = await axios.get(url_requ, {headers});
 
         if (response.status === 200) {
             console.log("Video Find successfully");

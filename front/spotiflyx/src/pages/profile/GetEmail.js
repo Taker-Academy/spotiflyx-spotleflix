@@ -2,11 +2,18 @@ const axios = require('axios');
 const url = "http://localhost:8080";
 
 async function GetEmail() {
+    const url_send = url + "/profile";
+    const jwtToken = localStorage.getItem("jwtToken");
+
+    const headers = {
+        Authorization: `Bearer ${jwtToken}`
+    };
+
     try {
 
-        const url_send = url + "/profile/";
         // Post user data
-        const response = await axios.get(url_send);
+        console.log("The ur is = " + url_send);
+        const response = await axios.get(url_send, {headers});
 
         console.error("Status erros is " + response.status)
         // Handle successful response
@@ -20,7 +27,7 @@ async function GetEmail() {
     } catch (error) {
         // Handle error
         console.error(error);
-        return error;
+        return response;
     }
 }
 

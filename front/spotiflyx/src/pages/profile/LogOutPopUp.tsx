@@ -11,7 +11,8 @@ interface ModalProps {
 export const LogOutPopUp: React.FC<ModalProps> = ({ onClose }) => {
 
     const navigate = useNavigate();
-
+    
+    localStorage.removeItem("jwtToken");
     return (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
             <div className="bg-zinc-800 p-6 rounded-lg">

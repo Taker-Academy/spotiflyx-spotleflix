@@ -3,6 +3,7 @@ import GetHomeVideo from "./GetHomeVideo";
 import { SearchArray } from "./SearchBar";
 import HomeVideoResult from "./DisplayHomeVideo";
 import { Section } from "@/components/Section";
+import { useNavigate } from "react-router-dom";
 
 export var h_ARRAY: SearchArray[] = [];
 
@@ -21,6 +22,7 @@ export const FetchVideoHome = () => {
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         let ignore = false;
@@ -61,6 +63,7 @@ export const FetchVideoHome = () => {
 
     if (error) {
         // Display error message
+        navigate('/login');
         return (
             <div className="flex-grow flex flex-col justify-center">
                 <p className="text-center text-gray-600">An error occurred. Please try again later.</p>
