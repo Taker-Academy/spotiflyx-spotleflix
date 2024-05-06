@@ -20,14 +20,7 @@ const videoSchema = seque.define('Video',
             type: Sequelize.DataTypes.STRING,
             allowNull: false
         },
-        description: {
-            type: Sequelize.DataTypes.TEXT,
-        },
         videoUrl: {
-            type: Sequelize.DataTypes.STRING,
-            allowNull: false
-        },
-        thumbnailUrl: {
             type: Sequelize.DataTypes.STRING,
             allowNull: false
         },

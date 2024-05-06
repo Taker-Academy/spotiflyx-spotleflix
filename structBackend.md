@@ -113,18 +113,14 @@ Cette route permet de créer une nouvelle video dans la base de données.
 ### Body
 
 - **title (String, required):** Titre de la video.
-- **description (String, required):** Description de la vidéo.
 - **videoUrl (String, required):** Url de la vidéo.
-- **thumbnailUrl (String, required):** Url de l'image de la miniature.
 
 ## Exemple de Requête
 
 ```json
 {
     "title": "titre video",
-    "description": "je suis une description",
     "videoUrl": "https://www.youtube.com/watch?v=${item.id.videoId}",
-    "thumbnailUrl": "../url/de/la/miniature"
 }
 ```
 
@@ -137,7 +133,6 @@ Cette route permet de créer une nouvelle video dans la base de données.
         "token": "eg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQzYWNmZWI0NjU3MTU0Yjg1Y2VjMyIsImlhdCI6MTcwMjExNjA0NywiZXhwIjoxNzAyMjAyNDQ3fQ.hQ2Om2eiNVPquH9npiCC9hOUy3hoizsFVt8QACCPolU",
         "video": {
             "title": "titre video",
-            "description": "je suis une description"
         }
     }
 }
@@ -309,7 +304,7 @@ Cette route permet à l'utilisateur de mettre une vidéos en favoris.
 
 > Prefix: `/profile`
 
-### Endpoint [POST] `/password/modify/`
+### Endpoint [PUT] `/password/modify/`
 
 ## Description
 
@@ -335,7 +330,7 @@ Cette route permet de modifier le mot de passe de l'utilisateur dans la base de 
 }
 ```
 
-## Format de réponse (201 OK)
+## Format de réponse (200 OK)
 
 ```json
 {
@@ -348,15 +343,15 @@ Cette route permet de modifier le mot de passe de l'utilisateur dans la base de 
 
 ## Réponse possible
 
-- **201 OK:** Mot de passe changer avec succès.
+- **200 OK:** Mot de passe changer avec succès.
 - **400 Bad Request:** Mauvaise requête, paramètres manquants ou invalides.
 - **401 Bad Token:** Mauvais token JWT.
-- **402 Bad Token:** Mot de passe acutel incorrect.
+- **402 Bad Token:** Mot de passe actuel incorrect.
 - **403 Bad Token:** Nouveau mot de passe identique à l'actuel.
 - **500 Internal Server Error:** Erreur interne du serveur.
 ---
 
-### Endpoint [POST] `/account/delete/`
+### Endpoint [DELETE] `/account/delete/`
 
 ## Description
 
