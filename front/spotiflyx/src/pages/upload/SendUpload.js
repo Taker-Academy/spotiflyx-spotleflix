@@ -11,26 +11,35 @@ async function SendUpload(title, link, media) {
 
     try {
         // Post user data
-        const response = '';
 
         if (media === "Video") {
-            response = await axios.post(url + "/video/post/", DataUser);
+            const response_video = await axios.post(url + "/video/post/", DataUser);
+            if (response_video.status === 201) {
+                console.log("Video uploaded successfully");
+                return response_video;
+            } else {
+                console.error('An error occured during the process of changing the password');
+                return response_video;
+            }
         } else if (media === "Music") {
-            response = await axios.post(url + "/music/post/", DataUser);
+            const response_music = await axios.post(url + "/music/post/", DataUser);
+            if (response_music.status === 201) {
+                console.log("Music uploaded successfully");
+                return response_music;
+            } else {
+                console.error('An error occured during the process of changing the password');
+                return response_music;
+            }
         }
 
         // Handle successful response
-        if (response.status === 201) {
-            console.log("Video uploaded successfully");
-            return response;
-        } else {
-            console.error('An error occured during the process of changing the password');
-            return response;
-        }
     } catch (error) {
         // Handle error
         console.error(error);
-        return response;
+        if (media === "Video") {
+            return response_video;
+        }
+        return response_music;
     }
 }
 
