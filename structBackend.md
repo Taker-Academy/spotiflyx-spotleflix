@@ -265,7 +265,11 @@ Cette route permet à l'utilisateur propriétaire de supprimer un élément (vid
 
 ---
 
-### Endpoint [POST] `/favorite/put` 🔐
+## Auth
+
+> Prefix: `/favorite`
+
+### Endpoint [POST] `/post` 🔐
 
 ## Description
 
@@ -279,7 +283,8 @@ Cette route permet à l'utilisateur de mettre une vidéos en favoris.
 
 ### Body
 
-- **videoId (String, required):** ID de l'élément (vidéos) à mettre en favoris.
+- **type (String, required):** music ou video uniquement, cela correspond au type de contenue a enregistrer
+- **favoritedItemId (Integer, required):** ID de l'élément (vidéos ou music) à mettre en favoris.
 
 ## Format de réponse (201 OK)
 
@@ -292,9 +297,10 @@ Cette route permet à l'utilisateur de mettre une vidéos en favoris.
 
 ## Réponses Possibles
 - **201 OK:** Favoris enregistré avec succès.
+- **400 OK:** Mauvaise requête, paramètres manquants ou invalides.
 - **401 Unauthorized:** Mauvais token JWT.
 - **404 Not Found:** Élément non trouvé.
-- **409 Conflict:** Vous avez déjà mis ce post en favris.
+- **409 Conflict:** Vous avez déjà mis ce post en favoris.
 - **500 Internal Server Error:** Erreur interne du serveur.
 
 ---

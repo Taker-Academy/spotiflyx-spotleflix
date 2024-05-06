@@ -37,7 +37,6 @@ async function addNewUser(body) {
     const hashPass = await hashPassword(body.password);
     try {
         const newUser = new User({
-            createdAt: new Date(),
             email: body.email,
             password: hashPass,
             firstName: body.firstName,
