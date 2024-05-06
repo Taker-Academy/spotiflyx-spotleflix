@@ -2,6 +2,24 @@ const User = require("../../models/models_User");
 const toke = require("../../functionUtils/handlingToken");
 const bcrypt = require('bcrypt');
 
+function sendError(message)
+{
+    const response = {
+        ok: false,
+        error: message,
+    };
+    return response;
+}
+
+function sendResponse()
+{
+    const response = {
+        ok: true,
+        modify: true,
+    };
+    return response;
+}
+
 async function comparePassword(hashedPassword, plainPassword) {
     try {
         const match = await bcrypt.compare(plainPassword, hashedPassword);
@@ -97,7 +115,7 @@ module.exports.putModPassword = async (req, res) => {
             return;
         }
         await changePassword(body, resTok.data.userId);
-        res.status(200).json(sendResponse(title));
+        res.status(200).json(sendResponse());
         return;
     } catch (error) {
         console.error('Erreur lors du traitement de la requête :', error);
