@@ -4,7 +4,7 @@ const url = "http://localhost:8080";
 async function GetEmail() {
     try {
 
-        const url_send = url + "/profile";
+        const url_send = url + "/profile/";
         // Post user data
         const response = await axios.get(url_send);
 
@@ -20,7 +20,7 @@ async function GetEmail() {
     } catch (error) {
         // Handle error
         console.error(error);
-        return response;
+        return error;
     }
 }
 

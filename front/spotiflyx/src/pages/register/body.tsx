@@ -43,7 +43,7 @@ const Body = () => {
             const response = await SendRegisterForm(firstname, lastname, email, password);
             if (response.status === 201) {
                 alert("Welcome " + values.firstname);
-                setAuthToken(response.data.token);
+                setAuthToken(response.data.data.token);
                 navigate("/home");
                 return 0;
             } else {
