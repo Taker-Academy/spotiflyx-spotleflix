@@ -5,6 +5,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils"
 import React, { PropsWithChildren, useState, useEffect } from 'react';
 import SendRegisterForm from "./SentregisterForm";
+import setAuthToken from '../SeAuthToken';
 
 export const values = {
     firstname: '',
@@ -40,8 +41,9 @@ const Body = () => {
         console.log("password= ", password);
         try {
             const response = await SendRegisterForm(firstname, lastname, email, password);
-            if (response === 0) {
+            if (response.status === 201) {
                 alert("Welcome " + values.firstname);
+                setAuthToken(response.data.token);
                 navigate("/home");
                 return 0;
             } else {
