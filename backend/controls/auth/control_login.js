@@ -93,6 +93,7 @@ async function sendResponse(body)
             }
         }
     };
+    console.log("Token created = " + createTok);
     return response;
 }
 

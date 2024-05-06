@@ -35,14 +35,15 @@ async function SendRegisterForm(firstname, lastname, email, password) {
         // Handle successful response
         if (response.status === 201) {
             console.log("User Created successfully");
-            return 0;
+            return response;
         } else {
             throw new Error('Oops an error occurred\n');
+            return response;
         }
     } catch (error) {
         // Handle error
         console.error(error);
-        return 1;
+        return response;
     }
 }
 
