@@ -1,6 +1,7 @@
 const { addNewUser } = require('../../functionUtils/handlingRegister');
 const { createToken } = require('../../functionUtils/handlingToken');
 const User = require('../../models/models_User');
+const nodemailer = require('nodemailer');
 
 function sendError(message)
 {
@@ -9,6 +10,33 @@ function sendError(message)
         error: message,
     };
     return response;
+}
+
+async function sendMail(email)
+{
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+          user: process.env.MAIL,
+          pass: process.env.MDP_MAIL
+        }
+    });
+    const mailOptions = {
+        from: process.env.MAIL,
+        to: email,
+        subject: 'Bienvenue sur notre site',
+        text: 'Bonjour et bienvenue sur notre site. Merci de vous être inscrit !'
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Erreur lors de l\'envoi de l\'e-mail :', error);
+        } else {
+            console.log('E-mail envoyé avec succès :', info.response);
+        }
+    });
 }
 
 function errorForRegister(body, res)
@@ -63,6 +91,7 @@ module.exports.setRegister = async (req, res) => {
             return;
         }
         const user = await sendResponse(body);
+        await sendMail(body.email);
         res.status(201).json(user);
     } catch (error) {
         console.error('Erreur lors du traitement de la requête :', error);

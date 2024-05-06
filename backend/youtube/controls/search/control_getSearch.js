@@ -63,14 +63,14 @@ async function searchVideos(searchs, num, res)
         const videos = await Promise.all(response.data.items.map(async (item) => {
             const title = item.snippet.title;
             const description = item.snippet.description;
-            const thumbnailUrl = item.snippet.thumbnails.default.url;
+            const id_video = item.id.videoId;
             const videoUrl = `https://www.youtube.com/watch?v=${item.id.videoId}`;
             console.log("id ==> " + item.id.videoId);
             const views = await getVideoDetails(item.id.videoId);
             if (views === -1) {
                 return [];
             }
-            return {title, description, thumbnailUrl, videoUrl, views};
+            return {title, description, id_video, videoUrl, views};
         }));
         return videos;
     } catch (error) {
