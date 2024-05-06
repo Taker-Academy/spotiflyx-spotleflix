@@ -52,6 +52,6 @@
 
 ### Page de mes musiques et vidéos favorites
 - En tant qu'utilisateur, je ne veux pas pouvoir accéder à la page de mes musiques et vidéos favorites si je ne suis pas connecté.
-- En tant qu'utilisateur, je veux pouvoir accéder à la page de mes musiques et vidéos favorites en cliquant sur le bouton "Mes favoris" dans la navbar à gauche de la page.
+~- En tant qu'utilisateur, je veux pouvoir accéder à la page de mes musiques et vidéos favorites en cliquant sur le bouton "Mes favoris" dans la navbar à gauche de la page.~
 - En tant qu'utilisateur, je veux pouvoir voir la liste de mes musiques et vidéos favorites sur la page.
 - En tant qu'utilisateur, je veux pouvoir cliquer sur une musique ou une vidéo de la liste pour accéder à la page de la musique ou de la vidéo.
