@@ -10,9 +10,7 @@ async function sendResponse(post)
             createdAt: post.createdAt,
             userId: post.userId,
             title: post.title,
-            description: post.description,
             videoUrl: post.videoUrl,
-            thumbnailUrl: post.thumbnailUrl,
         }
     };
     return response;
@@ -32,9 +30,7 @@ async function addNewVideo(body, data, res) {
         const newVideo = new Video({
             createdAt: new Date(),
             title: body.title,
-            description: body.description,
             videoUrl: body.videoUrl,
-            thumbnailUrl: body.thumbnailUrl,
             userId: data.userId
         });
 
@@ -55,9 +51,8 @@ function errorForRegister(body, res)
         return 1;
     }
     if (typeof body !== "object" || Object.keys(body).length !== 4 ||
-    !body.title || !body.description || !body.videoUrl || !body.thumbnailUrl ||
-    typeof body.title !== "string" || typeof body.description !== "string" ||
-    typeof body.thumbnailUrl !== "string" || typeof body.videoUrl !== "string") {
+    !body.title || !body.videoUrl || typeof body.title !== "string"  ||
+    typeof body.videoUrl !== "string") {
         res.status(400).json(sendError("Mauvaise requête, paramètres manquants ou invalides."));
         return 1;
     }
