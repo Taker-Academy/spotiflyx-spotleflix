@@ -31,6 +31,7 @@ async function recupUser(id)
         return user;
     }
     console.log("User non trouvé.");
+    return [];
 }
 
 module.exports.setGetUser = async (req, res) => {
@@ -44,6 +45,10 @@ module.exports.setGetUser = async (req, res) => {
             return;
         }
         const user = await recupUser(resTok.data.userId);
+        if (!user.length) {
+            res.status(400).json(sendError("No user"));
+            return;
+        }
         res.status(200).json(sendResponse(user));
         return;
     } catch (error) {
