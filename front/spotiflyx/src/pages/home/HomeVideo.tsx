@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import GetHomeVideo from "./GetHomeVideo";
-import { s_ARRAY, SearchArray } from "./SearchBar";
+import { SearchArray } from "./SearchBar";
 import HomeVideoResult from "./DisplayHomeVideo";
 import { Section } from "@/components/Section";
 
@@ -11,6 +11,7 @@ export const DisplayHomeVideo = () => {
     // Display HomeVideoResult component with fetched data
     return (
         <Section>
+            <p>This is a test</p>
             <HomeVideoResult h_ARRAY={h_ARRAY} />
         </Section>
     );
@@ -45,7 +46,7 @@ export const FetchVideoHome = () => {
         fetchHomeVideo();
 
         return () => {
-            DisplayHomeVideo();
+            ignore = false;
         };
     }, []);
 
@@ -75,4 +76,10 @@ export const FetchVideoHome = () => {
             </div>
         );
     }
+
+    return (
+        <Section>
+            <HomeVideoResult h_ARRAY={h_ARRAY} />
+        </Section>
+    )
 };

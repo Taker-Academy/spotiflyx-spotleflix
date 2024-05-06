@@ -16,22 +16,26 @@ async function SendLogInForm(email, password) {
         "password": password,
     };
 
+    console.error(DataUser.email);
+    console.error(DataUser.password);
+
     try {
         // Post user data
         const response = await axios.post(url + "/auth/login/", DataUser);
 
+        console.log("Response return a status of " + response.status);
         // Handle successful response
         if (response.status === 200) {
             console.log("Log In successfully");
-            return 0;
+            return response;
         } else {
             console.error('It seems you do not have an account');
-            return 1;
+            return response;
         }
     } catch (error) {
         // Handle error
         console.error(error);
-        return 1;
+        return response;
     }
 }
 

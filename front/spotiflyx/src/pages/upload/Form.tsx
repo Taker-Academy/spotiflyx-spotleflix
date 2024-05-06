@@ -1,55 +1,43 @@
-import { Password } from 'primereact/password';
 import React, { useState } from 'react';
-import { Divider } from 'primereact/divider';
+import { WhichMedia } from './UploadMusicVideo';
 
-export var email = '';
-export var str_password = '';
+export var title = '';
+export var link = '';
 
 export type FormProps = {
     title: string;
-    value: string;
-    password: number;
+    value: string | (() => string);
 }
 
-export const FORMS: FormProps[] = [
+const WhichValue = () => {
+    console.log(WhichMedia);
+    if (WhichMedia === "Video")
+        return "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    return "https://open.spotify.com/track/6yqwxY8qifBBhyryjZutxk?si=c766a5d007ce4b37";
+}
+
+
+export var FORMS: FormProps[] = [
     {
-        title: "Email",
-        value: "jean.dupont@gmail.com",
-        password: 1,
+        title: "Title of the video",
+        value: "add a name",
     },
     {
-        title: "Password",
-        value: "password",
-        password: 0,
+        title: "Link",
+        value: WhichValue,
     },
 ]
 
-const header = <h6>Pick a password</h6>;
-const footer = (
-    <React.Fragment>
-        <Divider />
-        <p className="mt-2">Suggestions</p>
-        <ul className="pl-2 ml-2 mt-0" style={{lineHeight: '1.5'}}>
-            <li>At least one lowercase</li>
-            <li>At least one uppercase</li>
-            <li>At least one numeric</li>
-            <li>Minimum 8 characters</li>
-        </ul>
-    </React.Fragment>
-);
-
-const password = (props: FormProps) => {
-    if (props.password === 1)
-        return "text"
-    else
-        return "password"
+export const UpdateForm = () => {
+    return FORMS;
 }
+
 
 export const Form = (props: FormProps) => {
 
     const [value, setValue] = useState({
-        email: '',
-        str_password: '',
+        title: '',
+        link: '',
     });
 
     const handleNameChange = (event: any, input:string) => {
@@ -58,11 +46,11 @@ export const Form = (props: FormProps) => {
             ...prevState,
             [input.toLowerCase()]: newValue
         }));
-        if (input === "Email") {
-            email = newValue;
+        if (input === "Title of the video") {
+            title = newValue;
         }
-        if (input === "Password") {
-            str_password = newValue;
+        if (input === "Link") {
+            link = newValue;
         }
     };
 
@@ -72,9 +60,9 @@ export const Form = (props: FormProps) => {
                 <label className="flex flex-col">
                     {props.title}
                     <input
-                        type={password(props)}
+                        type="text"
                         name="name"
-                        placeholder={props.value}
+                        placeholder={typeof props.value === 'function' ? props.value() : props.value}
                         className="hover:border-white bg-transparent border border-gray-500 rounded p-1"
                         style={{ backdropFilter: 'blur(10px)' }}
                         onChange={(event) => handleNameChange(event, props.title)}
