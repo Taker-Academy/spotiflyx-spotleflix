@@ -10,7 +10,7 @@ const SectionHomeVideo = (props: SearchArray) => {
     return (
         <Section className="w-100 h-fit">
             <img
-                src={props.thumbnailUrl}
+                src={`https://img.youtube.com/vi/${props.id_video}/maxresdefault.jpg`}
                 alt="Thumbnail of the video"
                 className="object-cover h-60 w-120 pb-3"
             ></img>
@@ -34,7 +34,7 @@ const HomeVideoResult = ({ h_ARRAY }: { h_ARRAY: SearchArray[] }) => {
                             views={project.views}
                             videoUrl={project.videoUrl}
                             title={project.title}
-                            thumbnailUrl={project.thumbnailUrl}
+                            id_video={project.id_video}
                             description={project.description}
                         />
                     </div>

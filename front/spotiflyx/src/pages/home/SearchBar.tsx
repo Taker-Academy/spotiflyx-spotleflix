@@ -10,7 +10,7 @@ export type SearchArray = {
     "views": number
     "videoUrl": string
     "title": string
-    "thumbnailUrl": string
+    "id_video": string
     "description": string
 }
 
