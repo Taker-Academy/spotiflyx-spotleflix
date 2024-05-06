@@ -32,7 +32,7 @@ Cette route permet de récupérer les données d'une vidéo Youtube.
             "token": "eg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQzYWNmZWI0NjU3MTU0Yjg1Y2VjMyIsImlhdCI6MTcwMjExNjA0NywiZXhwIjoxNzAyMjAyNDQ3fQ.hQ2Om2eiNVPquH9npiCC9hOUy3hoizsFVt8QACCPolU",
             "title": "SQUEEZIE - TOP 1",
             "description": "On veut tous faire top 1 sur Fortnite. Mais c'est pas donné à tout le monde. ABONNE-TOI !",
-            "thumbnailUrl": "https://i.ytimg.com/vi/uGSu6mhk3RQ/default.jpg",
+            "id_video": "uGSu6mhk3RQ",
             "videoUrl": "https://www.youtube.com/watch?v=uGSu6mhk3RQ",
             "views": "47982379"
         }
@@ -78,7 +78,7 @@ Cette route permet de récupérer les données d'une vidéo Youtube.
             "token": "eg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQzYWNmZWI0NjU3MTU0Yjg1Y2VjMyIsImlhdCI6MTcwMjExNjA0NywiZXhwIjoxNzAyMjAyNDQ3fQ.hQ2Om2eiNVPquH9npiCC9hOUy3hoizsFVt8QACCPolU",
             "title": "SQUEEZIE - TOP 1",
             "description": "On veut tous faire top 1 sur Fortnite. Mais c'est pas donné à tout le monde. ABONNE-TOI !",
-            "thumbnailUrl": "https://i.ytimg.com/vi/uGSu6mhk3RQ/default.jpg",
+            "id_video": "uGSu6mhk3RQ",
             "videoUrl": "https://www.youtube.com/watch?v=uGSu6mhk3RQ",
             "views": "47982379"
         }
