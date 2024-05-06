@@ -335,9 +335,7 @@ Cette route permet de modifier le mot de passe de l'utilisateur dans la base de 
 ```json
 {
     "ok": true,
-    "data": {
-        "token": "eg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQzYWNmZWI0NjU3MTU0Yjg1Y2VjMyIsImlhdCI6MTcwMjExNjA0NywiZXhwIjoxNzAyMjAyNDQ3fQ.hQ2Om2eiNVPquH9npiCC9hOUy3hoizsFVt8QACCPolU",
-    }
+    "modify": true,
 }
 ```
 
@@ -351,7 +349,7 @@ Cette route permet de modifier le mot de passe de l'utilisateur dans la base de 
 - **500 Internal Server Error:** Erreur interne du serveur.
 ---
 
-### Endpoint [DELETE] `/account/delete/`
+### Endpoint [DELETE] `/delete`
 
 ## Description
 
@@ -363,42 +361,27 @@ Cette route permet de supprimer le compte de l'utilisateur dans la base de donn�
 
 - **Authorization (String, required):** Token JWT pour l'authentification.
 
-### Body
-
-- **email (String, required):** email de l'utilisateur.
-
-## Exemple de Requête
-
-```json
-{
-    "email": "jean.dupont@gmail.com",
-}
-```
-
-## Format de réponse (201 OK)
+## Format de réponse (200 OK)
 
 ```json
 {
     "ok": true,
-    "data": {
-        "token": "eg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQzYWNmZWI0NjU3MTU0Yjg1Y2VjMyIsImlhdCI6MTcwMjExNjA0NywiZXhwIjoxNzAyMjAyNDQ3fQ.hQ2Om2eiNVPquH9npiCC9hOUy3hoizsFVt8QACCPolU",
-    }
+    "removed": true,
 }
 ```
 
 ## Réponse possible
 
-- **201 OK:** Compte supprimer avec succès.
-- **400 Bad Request:** Mauvaise requête, paramètres manquants ou invalides.
+- **200 OK:** Compte supprimer avec succès.
 - **401 Bad Token:** Mauvais token JWT.
 - **500 Internal Server Error:** Erreur interne du serveur.
 ---
 
-### Endpoint [GET] `/email`
+### Endpoint [GET] `/`
 
 ## Description
 
-Cette route permet de récuperer l'email de l'utilisateur dans la base de données.
+Cette route permet de récuperer les données de l'utilisateur dans la base de données.
 
 ## Paramètres
 
@@ -406,21 +389,24 @@ Cette route permet de récuperer l'email de l'utilisateur dans la base de donné
 
 - **Authorization (String, required):** Token JWT pour l'authentification.
 
-## Format de réponse (201 OK)
+## Format de réponse (200 OK)
 
 ```json
 {
     "ok": true,
-    "data": {
-        "token": "eg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQzYWNmZWI0NjU3MTU0Yjg1Y2VjMyIsImlhdCI6MTcwMjExNjA0NywiZXhwIjoxNzAyMjAyNDQ3fQ.hQ2Om2eiNVPquH9npiCC9hOUy3hoizsFVt8QACCPolU",
-    }
+    "data": [
+        {
+            "email": "yaya@finito.com",
+            "firstName": "Yaya",
+            "lastName": "Finito",
+        },
+    ]
 }
 ```
 
 ## Réponse possible
 
-- **201 OK:** Mot de passe changer avec succès.
-- **400 Bad Request:** Mauvaise requête, paramètres manquants ou invalides.
+- **200 OK:** Donnée récupéré avec succès.
 - **401 Bad Token:** Mauvais token JWT.
 - **500 Internal Server Error:** Erreur interne du serveur.
 ---
