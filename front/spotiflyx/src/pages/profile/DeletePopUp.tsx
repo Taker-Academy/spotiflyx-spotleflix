@@ -46,7 +46,7 @@ export const DeletePopUp: React.FC<ModalProps> = ({ onClose }) => {
             return 1;
         }
         try {
-            const response = await SendDeleteAccount(email);
+            const response = await SendDeleteAccount();
             if (response.status === 200) {
                 navigate('/register');
                 openSuccess();

@@ -1,17 +1,11 @@
 const axios = require('axios');
 const url = "http://localhost:8080";
 
-async function SendDeleteAccount(email) {
-    let DataUser;
-
-    // Prepare user information
-    DataUser = {
-        "email": email,
-    };
+async function SendDeleteAccount() {
 
     try {
         // Post user data
-        const response = await axios.post(url + "/profile/account/delete/", DataUser);
+        const response = await axios.delete(url + "/profile/delete/");
 
         // Handle successful response
         if (response.status === 200) {
