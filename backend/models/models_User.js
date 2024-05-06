@@ -1,3 +1,4 @@
+const Favorite = require("./models_Fav");
 const Sequelize = require('sequelize');
 const seque = new Sequelize('spotiflyx', process.env.USER_DB, process.env.MDP_DB, {
     host: "localhost",
@@ -14,7 +15,8 @@ const userSchema = seque.define('User',
         },
         createdAt: {
             type: Sequelize.DataTypes.DATE,
-            allowNull: false,
+            allowNull:false,
+            defaultValue: seque.literal('CURRENT_TIMESTAMP')
         },
         email: {
             type: Sequelize.DataTypes.STRING,
@@ -32,10 +34,8 @@ const userSchema = seque.define('User',
             type: Sequelize.DataTypes.STRING,
             allowNull: false,
         },
-        favorites: {
-            type: Sequelize.DataTypes.ARRAY(Sequelize.DataTypes.JSONB),
-            defaultValue: []
-        }
     });
+
+    userSchema.hasMany(Favorite, { as: 'favorites' });
 
 module.exports = userSchema;

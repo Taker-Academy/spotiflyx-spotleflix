@@ -3,7 +3,7 @@ const router = express.Router();
 const { setPostVideo } = require("../controls/video/control_PostVideo");
 const { setGetAllVideos } = require("../controls/video/control_getAllVideo");
 const { setGetVideosUser } = require("../controls/video/control_getVideoUser");
-const { setPostFavoris } = require("../controls/video/control_PostFav");
+const { setPostFavoris } = require("../controls/favorite/control_PostFav");
 const { setDelVideoId } = require("../controls/video/control_delVideoId");
 
 
@@ -14,8 +14,5 @@ router.get("/", setGetAllVideos);
 router.get("/me", setGetVideosUser);
 
 router.delete("/:id", setDelVideoId);
-
-router.post("/favorite/put", setPostFavoris);
-
 
 module.exports = router;
