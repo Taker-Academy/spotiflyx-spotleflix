@@ -6,6 +6,7 @@ const sequelize = new Sequelize('spotiflyx', process.env.USER_DB, process.env.MD
 
 const User = require('../models/models_User');
 const Video = require('../models/models_Video');
+const Favorite = require('../models/models_Fav');
 
 async function initUser()
 {
@@ -33,10 +34,24 @@ async function initVideo()
     }
 }
 
+async function initFav()
+{
+    const FavoriteModel = sequelize.models.Favorite;
+    const favExists = !!FavoriteModel;
+
+    if (!favExists) {
+        await Favorite.sync();
+        console.log('Favorite table created successfully.');
+    } else {
+        console.log('Favorite table already exists.');
+    }
+}
+
 const initTable = async () => {
     try {
         await initUser();
         await initVideo();
+        await initFav();
     } catch (error) {
         console.error('Error checking or creating User table:', error);
     }

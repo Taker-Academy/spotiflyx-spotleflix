@@ -87,15 +87,15 @@ function sendResponse(videos)
 }
 
 module.exports.setGetPop = async (req, res) => {
-    const tokId = req.headers.authorization;
-    const tokenNID = tokId && tokId.split(' ')[1];
-    const resTok = await toke.verifyToken(tokenNID);
+    // const tokId = req.headers.authorization;
+    // const tokenNID = tokId && tokId.split(' ')[1];
+    // const resTok = await toke.verifyToken(tokenNID);
 
     try {
-        if (resTok.code === 401) {
-            res.status(401).json(sendError("Mauvais token JWT."));
-            return;
-        }
+        // if (resTok.code === 401) {
+        //     res.status(401).json(sendError("Mauvais token JWT."));
+        //     return;
+        // }
         const r_code = req.query.regionCode || "FR";
         const num = parseInt(req.query.num) || 8;
         const errorBody = errorInBody(r_code, num, res);
