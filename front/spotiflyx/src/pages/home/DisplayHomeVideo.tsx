@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { SearchArray } from "./SearchBar";
 import Youtube from 'react-youtube';
 import { LikeLogo } from "@/components/images/LikeLogo";
+import addToFav from './AddToFav';
+import delToFav from './DelToFav';
+import { FavToPage } from "@/components/images/FavToPage";
 
 const DisplayView = (views: number) => {
     return views.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -16,10 +19,60 @@ const SectionHomeVideo = (props: SearchArray) => {
     };
 
     const [clicked, setClicked] = useState(false);
+    const [fav, setfav] = useState(false);
+
+    const AddToFav = async (url: string) => {
+        try {
+            const response = await addToFav(url);
+
+            if (response.status === 201) {
+                console.log("Succefully added to fav");
+                alert("Video successfully added to fav");
+                return;
+            } else {
+                console.error("An error occured during the process of adding to fav");
+                alert("Error: video not added, retry");
+                setClicked(false);
+                return;
+            }
+        } catch (error) {
+            console.error(error);
+            return;
+        }
+    }
+
+    const DelToFav = async (url: string) => {
+        try {
+            const response = await delToFav(url);
+
+            if (response.status === 201) {
+                console.log("Succefully delete from fav");
+                alert("Video successfully deleted from fav");
+                return;
+            } else {
+                console.error("An error occured during the process of deleting to fav");
+                alert("Error: video not deleted, retry");
+                setClicked(true);
+                return;
+            }
+        } catch (error) {
+            console.error(error);
+            return;
+        }
+    }
 
     const handleClick = () => {
         setClicked(!clicked);
     };
+
+    const SetFavColor = () => {
+        if (fav) {
+            AddToFav(props.videoUrl)
+        } else {
+            DelToFav(props.videoUrl)
+        }
+        setfav(!fav);
+    }
 
     return (
         <Section className="w-100 h-fit">
@@ -27,7 +80,7 @@ const SectionHomeVideo = (props: SearchArray) => {
             <p className="pt-3">{props.title}</p>
             <div className="flex justify-between">
                 <p>{DisplayView(props.views)} vues</p>
-                <div>
+                <div className="flex flex-row">
                     <div className="flex items-center">
                         <p className="flex flex-row">
                             {/* {props.like} */}
@@ -39,6 +92,11 @@ const SectionHomeVideo = (props: SearchArray) => {
                             className="mb-2"
                         />
                     </div>
+                    <FavToPage
+                        size={30}
+                        fill={fav ? "#c6ccd7" : "none"}
+                        onClick={SetFavColor}
+                    />
                 </div>
             </div>
             {/* <p>{props.author}</p> */}
