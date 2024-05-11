@@ -1,7 +1,8 @@
 import { Section } from "@/components/Section"
-import React from 'react';
+import React, { useState } from 'react';
 import { SearchArray } from "./SearchBar";
 import Youtube from 'react-youtube';
+import { LikeLogo } from "@/components/images/LikeLogo";
 
 const DisplayView = (views: number) => {
     return views.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -14,11 +15,33 @@ const SectionHomeVideo = (props: SearchArray) => {
         height: '280',
     };
 
+    const [clicked, setClicked] = useState(false);
+
+    const handleClick = () => {
+        setClicked(!clicked);
+    };
+
     return (
         <Section className="w-100 h-fit">
             <Youtube videoId={props.id_video} opts={opts}/>
-            <p>{props.title}</p>
-            <p>{DisplayView(props.views)} vues</p>
+            <p className="pt-3">{props.title}</p>
+            <div className="flex justify-between">
+                <p>{DisplayView(props.views)} vues</p>
+                <div>
+                    <div className="flex items-center">
+                        <p className="flex flex-row">
+                            {/* {props.like} */}
+                        </p>
+                        <LikeLogo 
+                            size={30}
+                            fill={clicked ? "blue" : "white"}
+                            onClick={handleClick}
+                            className="mb-2"
+                        />
+                    </div>
+                </div>
+            </div>
+            {/* <p>{props.author}</p> */}
       </Section>
     )
 }

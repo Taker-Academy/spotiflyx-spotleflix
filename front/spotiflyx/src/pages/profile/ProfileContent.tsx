@@ -8,10 +8,13 @@ import { ChangePassword } from "./ChangePassword";
 import { LogOutPopUp } from "./LogOutPopUp";
 import { DeletePopUp } from "./DeletePopUp";
 import GetEmail from "./GetEmail";
+import { useNavigate } from "react-router-dom";
 
 export var email = '';
 
 export const ProfileContent = () => {
+
+    const navigate = useNavigate();
 
     const [isPasswordOpen, setIsPasswordOpen] = useState(false);
     const [IsLogout, setIsLogout] = useState(false);
@@ -73,6 +76,7 @@ export const ProfileContent = () => {
 
     if (error) {
         // Display error message
+        navigate("/login");
         return (
             <div className="flex-grow flex flex-col justify-center">
                 <p className="text-center text-gray-600">An error occurred. Please try again later.</p>

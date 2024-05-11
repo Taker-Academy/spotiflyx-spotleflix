@@ -33,11 +33,11 @@
 ~- En tant qu'utilisateur, je veux pouvoir voir le nom de la musique ou de la vidéo sur la page.~
 ~- En tant qu'utilisateur, je veux pouvoir accéder à la page d'une musique ou d'une vidéo en cliquant sur une bannière de recherche.~
 ~- En tant qu'utilisateur, je veux pouvoir voir la vidéo YouTube de la page.~
-- En tant qu'utilisateur, je ne veux pas pouvoir accéder à la page d'une musique ou d'une vidéo si je ne suis pas connecté.
-- En tant qu'utilisateur, je veux pouvoir voir le nom de l'artiste de la musique ou de la vidéo sur la page.
-- En tant qu'utilisateur, je veux pouvoir liker une musique ou une vidéo.
-- En tant qu'utilisateur, je veux pouvoir supprimer mon like d'une musique ou d'une vidéo.
-- En tant qu'utilisateur, je veux pouvoir voir le nombre de likes d'une musique ou d'une vidéo.
+~- En tant qu'utilisateur, je ne veux pas pouvoir accéder à la page d'une musique ou d'une vidéo si je ne suis pas connecté.~
+~- En tant qu'utilisateur, je veux pouvoir voir le nom de l'artiste de la musique ou de la vidéo sur la page.~
+~- En tant qu'utilisateur, je veux pouvoir liker une musique ou une vidéo.~
+~- En tant qu'utilisateur, je veux pouvoir supprimer mon like d'une musique ou d'une vidéo.~
+~- En tant qu'utilisateur, je veux pouvoir voir le nombre de likes d'une musique ou d'une vidéo.~
 - En tant qu'utilisateur, je veux pouvoir ajouter une musique ou une vidéo à mes favoris.
 - En tant qu'utilisateur, je veux pouvoir supprimer une musique ou une vidéo de mes favoris.
 - En tant qu'utilisateur, je veux pouvoir jouer la musique de la page.
@@ -48,7 +48,7 @@
 ~- En tant qu'utilisateur, je veux pouvoir voir mon email sur la page de profil.~
 ~- En tant qu'utilisateur, je veux pouvoir modifier mon mot de passe sur la page de profil.~
 ~- En tant qu'utilisateur, je veux pouvoir supprimer mon compte sur la page de profil en renseignant mon mot de passe.~
-- En tant qu'utilisateur, je ne veux pas pouvoir accéder à la page de profil si je ne suis pas connecté.
+~- En tant qu'utilisateur, je ne veux pas pouvoir accéder à la page de profil si je ne suis pas connecté.~
 
 ### Page de mes musiques et vidéos favorites
 - En tant qu'utilisateur, je ne veux pas pouvoir accéder à la page de mes musiques et vidéos favorites si je ne suis pas connecté.
