@@ -50,7 +50,7 @@ function errorForRegister(body, res)
         res.status(400).json(sendError("Mauvaise requête, paramètres manquants ou invalides."));
         return 1;
     }
-    if (typeof body !== "object" || Object.keys(body).length !== 4 ||
+    if (typeof body !== "object" || Object.keys(body).length !== 2 ||
     !body.title || !body.videoUrl || typeof body.title !== "string"  ||
     typeof body.videoUrl !== "string") {
         res.status(400).json(sendError("Mauvaise requête, paramètres manquants ou invalides."));
@@ -61,8 +61,7 @@ function errorForRegister(body, res)
 
 module.exports.setPostVideo = async (req, res) => {
     const tokId = req.headers.authorization;
-    const tokenNID = tokId && tokId.split(' ')[1];
-    const resTok = await toke.verifyToken(tokenNID);
+    const resTok = await toke.verifyToken(tokId);
     const body = req.body;
     try {
         if (resTok.code === 401) {

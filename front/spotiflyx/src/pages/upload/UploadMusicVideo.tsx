@@ -1,6 +1,6 @@
 import { Section } from "@/components/Section"
 import { Spacing } from "@/components/Spacing";
-import { FormControl, RadioGroup, FormLabel, FormControlLabel, Radio } from "@mui/material"
+import { FormControl, RadioGroup, FormLabel, FormControlLabel, Radio, responsiveFontSizes } from "@mui/material"
 import { useState } from "react"
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -50,9 +50,14 @@ export const DisplayForm = () => {
         }
         try {
             const response = await SendUpload(title, link, WhichMedia);
+            if (response === null || response === undefined) {
+                alert("Error during the process of uploading a video");
+                return;
+            }
             if (response.status === 201) {
+                await openSuccess();
+                console.log("upload success !");
                 navigate('/home');
-                openSuccess();
                 return (
                     <div>
                         {IsSuccesChangeOpen && <SuccessUpload onClose={closeSuccess} Type={WhichMedia}/>}
@@ -78,6 +83,10 @@ export const DisplayForm = () => {
         }
         try {
             const response = await SendUpload(title, link, WhichMedia);
+            if (response === null || response === undefined) {
+                alert("Error during the process of uploading a video");
+                return;
+            }
             if (response.status === 201) {
                 navigate('/home');
                 openSuccess();

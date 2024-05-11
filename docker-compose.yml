@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: spotiflyx_database
+    environment:
+      POSTGRES_USER: db_user
+      POSTGRES_PASSWORD: db_password
+      POSTGRES_DB: db_name
+    volumes:
+      - spotiflyx_db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - backend_overlay
+
+  backend:
+    build: ./back
+    container_name: spotiflyx_backend
+    environment:
+      DATABASE_URL: postgres://db_user:db_password@postgres/db_name
+    volumes:
+      - /home/mathieu/Taker-Academy/project-4/spotiflyx-le-flix-il-est-plutot-spoti/back:/app
+    ports:
+      - "3000:3000"
+    command: npm run start
+    depends_on:
+      - postgres
+    networks:
+      - backend_overlay
+
+  # frontend:
+  #   build: ./frontend
+  #   container_name: spotiflyx_frontend
+  #   ports:
+  #     - "4200:4200"
+  #   command: npm run start
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - backend_overlay
+
+networks:
+  backend_overlay:
+    driver: bridge
+    attachable: true
+
+volumes:
+  spotiflyx_db_data:

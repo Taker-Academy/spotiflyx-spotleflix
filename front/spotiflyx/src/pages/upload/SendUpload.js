@@ -3,17 +3,20 @@ const url = "http://localhost:8080";
 
 async function SendUpload(title, link, media) {
     let DataUser;
+    const jwtToken = localStorage.getItem("jwtToken");
+
+    const headers = {
+        Authorization: `Bearer ${jwtToken}`
+    };
 
     DataUser = {
         "title": title,
         "link": link,
     };
 
-    try {
-        // Post user data
-
-        if (media === "Video") {
-            const response_video = await axios.post(url + "/video/post/", DataUser);
+    if (media === "Video") {
+        try {
+            const response_video = await axios.post(url + "/video/post/", DataUser, {headers});
             if (response_video.status === 201) {
                 console.log("Video uploaded successfully");
                 return response_video;
@@ -21,8 +24,13 @@ async function SendUpload(title, link, media) {
                 console.error('An error occured during the process of changing the password');
                 return response_video;
             }
-        } else if (media === "Music") {
-            const response_music = await axios.post(url + "/music/post/", DataUser);
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
+    } else if (media === "Music") {
+        try {
+            const response_music = await axios.post(url + "/music/post/", DataUser, {headers});
             if (response_music.status === 201) {
                 console.log("Music uploaded successfully");
                 return response_music;
@@ -30,16 +38,10 @@ async function SendUpload(title, link, media) {
                 console.error('An error occured during the process of changing the password');
                 return response_music;
             }
+        } catch (error) {
+            console.error(error);
+            return null;
         }
-
-        // Handle successful response
-    } catch (error) {
-        // Handle error
-        console.error(error);
-        if (media === "Video") {
-            return response_video;
-        }
-        return response_music;
     }
 }
 

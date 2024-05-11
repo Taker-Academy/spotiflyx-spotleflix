@@ -5,6 +5,11 @@ import { LatestUploadVideo } from "../latest_music_and_video_upload/LatestUpload
 import { Spacing } from "@/components/Spacing";
 import { FetchVideoHome } from "./HomeVideo";
 
+export type UploadedVideo = {
+    "title": string
+    "videoUrl": string
+}
+
 export const HomeMusic = () => {
     const [value, setValue] = useState(false);
 

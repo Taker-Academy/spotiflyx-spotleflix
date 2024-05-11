@@ -12,3 +12,4 @@ sudo npm install @mui/material
 sudo npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 sudo npm install @mui/system @emotion/react @emotion/styled
 sudo npm install resend
+npm install react-youtube

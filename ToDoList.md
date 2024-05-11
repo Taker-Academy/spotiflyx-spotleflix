@@ -18,10 +18,10 @@
 ~- En tant qu'utilisateur, je veux pouvoir voir une barre de recherche en haut de la page d'accueil.~
 ~- En tant qu'utilisateur, je veux pouvoir rechercher une musique ou une vidéo en renseignant le nom de la musique ou de la vidéo dans la barre de recherche.~
 ~- En tant qu'utilisateur, je veux voir apparaître les résultats de ma recherche sur la page d'accueil en petite bannière en dessous de la barre de recherche. Cette bannière contiendra le nom de la musique ou de la vidéo, ainsi que son type (musique ou vidéo).~
-- En tant qu'utilisateur, je ne veux pas pouvoir accéder à la page d'accueil si je ne suis pas connecté.
-- En tant qu'utilisateur, je veux avoir un message me souhaitant la bienvenue sur le site lorsque je me connecte.
-- En tant qu'utilisateur, je veux pouvoir voir à gauche de la page d'accueil une liste des 3 dernières vidéos ajoutées sur le site, et à droite une liste des 3 dernières musiques ajoutées sur le site.
-- En tant qu'utilisateur, je veux pouvoir cliquer sur une bannière de recherche pour accéder à la page de la musique ou de la vidéo.
+~- En tant qu'utilisateur, je ne veux pas pouvoir accéder à la page d'accueil si je ne suis pas connecté.~
+~- En tant qu'utilisateur, je veux avoir un message me souhaitant la bienvenue sur le site lorsque je me connecte.~
+~- En tant qu'utilisateur, je veux pouvoir voir à gauche de la page d'accueil une liste des 3 dernières vidéos ajoutées sur le site, et à droite une liste des 3 dernières musiques ajoutées sur le site.~
+~- En tant qu'utilisateur, je veux pouvoir cliquer sur une bannière de recherche pour accéder à la page de la musique ou de la vidéo.~
 
 ### Page de création de média
 ~- En tant qu'utilisateur, je veux avoir accès à un formulaire me permettant d'ajouter un contenu avec les inputs suivants:~
@@ -32,6 +32,7 @@
 ### Page de musique ou de vidéo
 ~- En tant qu'utilisateur, je veux pouvoir voir le nom de la musique ou de la vidéo sur la page.~
 ~- En tant qu'utilisateur, je veux pouvoir accéder à la page d'une musique ou d'une vidéo en cliquant sur une bannière de recherche.~
+~- En tant qu'utilisateur, je veux pouvoir voir la vidéo YouTube de la page.~
 - En tant qu'utilisateur, je ne veux pas pouvoir accéder à la page d'une musique ou d'une vidéo si je ne suis pas connecté.
 - En tant qu'utilisateur, je veux pouvoir voir le nom de l'artiste de la musique ou de la vidéo sur la page.
 - En tant qu'utilisateur, je veux pouvoir liker une musique ou une vidéo.
@@ -39,7 +40,6 @@
 - En tant qu'utilisateur, je veux pouvoir voir le nombre de likes d'une musique ou d'une vidéo.
 - En tant qu'utilisateur, je veux pouvoir ajouter une musique ou une vidéo à mes favoris.
 - En tant qu'utilisateur, je veux pouvoir supprimer une musique ou une vidéo de mes favoris.
-- En tant qu'utilisateur, je veux pouvoir voir la vidéo YouTube de la page.
 - En tant qu'utilisateur, je veux pouvoir jouer la musique de la page.
 - En tant qu'utilisateur, je veux pouvoir mettre en pause la musique de la page.
 

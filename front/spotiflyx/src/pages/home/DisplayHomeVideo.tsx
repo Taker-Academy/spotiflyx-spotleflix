@@ -1,19 +1,22 @@
 import { Section } from "@/components/Section"
 import React from 'react';
 import { SearchArray } from "./SearchBar";
+import Youtube from 'react-youtube';
 
 const DisplayView = (views: number) => {
     return views.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }  
 
 const SectionHomeVideo = (props: SearchArray) => {
+    
+    const opts = {
+        width: '498',
+        height: '280',
+    };
+
     return (
         <Section className="w-100 h-fit">
-            <img
-                src={`https://img.youtube.com/vi/${props.id_video}/maxresdefault.jpg`}
-                alt="Thumbnail of the video"
-                className="object-cover h-60 w-120 pb-3"
-            ></img>
+            <Youtube videoId={props.id_video} opts={opts}/>
             <p>{props.title}</p>
             <p>{DisplayView(props.views)} vues</p>
       </Section>
