@@ -7,16 +7,6 @@ import UploadedVideoResult from "./DisplayUploadedVideo";
 
 export var h_ARRAY: UploadedVideo[] = [];
 
-export const DisplayHomeVideo = () => {
-    // Display HomeVideoResult component with fetched data
-    return (
-        <Section>
-            <p>This is a test</p>
-            <UploadedVideoResult h_ARRAY={h_ARRAY} />
-        </Section>
-    );
-};
-
 export const FetchUploadedVideo = () => {
 
     const [loading, setLoading] = useState(true);
@@ -26,7 +16,7 @@ export const FetchUploadedVideo = () => {
     useEffect(() => {
         let ignore = false;
 
-        const fetchHomeVideo = async () => {
+        const fetchUploadedVideo = async () => {
             try {
                 const response = await GetUploadedVideo();
                 if (!ignore) {
@@ -44,7 +34,7 @@ export const FetchUploadedVideo = () => {
             }
         };
 
-        fetchHomeVideo();
+        fetchUploadedVideo();
 
         return () => {
             ignore = false;

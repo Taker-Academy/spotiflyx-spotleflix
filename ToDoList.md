@@ -28,7 +28,7 @@
   ~- radiobox: "vidéo" / "musique"~
   ~- "nom": Nom du média~
   ~- "lien": Lien permettant de récuperer le contenu depuis l'API corréspondante~
-- En tant qu'utilisateur, je veux pouvoir créer un nouveau contenu de type "musique" ou bien "vidéo" depuis une page prévue à cet effet
+~- En tant qu'utilisateur, je veux pouvoir créer un nouveau contenu de type "musique" ou bien "vidéo" depuis une page prévue à cet effet~
 ### Page de musique ou de vidéo
 ~- En tant qu'utilisateur, je veux pouvoir voir le nom de la musique ou de la vidéo sur la page.~
 ~- En tant qu'utilisateur, je veux pouvoir accéder à la page d'une musique ou d'une vidéo en cliquant sur une bannière de recherche.~
@@ -38,8 +38,8 @@
 ~- En tant qu'utilisateur, je veux pouvoir liker une musique ou une vidéo.~
 ~- En tant qu'utilisateur, je veux pouvoir supprimer mon like d'une musique ou d'une vidéo.~
 ~- En tant qu'utilisateur, je veux pouvoir voir le nombre de likes d'une musique ou d'une vidéo.~
-- En tant qu'utilisateur, je veux pouvoir ajouter une musique ou une vidéo à mes favoris.
-- En tant qu'utilisateur, je veux pouvoir supprimer une musique ou une vidéo de mes favoris.
+~- En tant qu'utilisateur, je veux pouvoir ajouter une musique ou une vidéo à mes favoris.~
+~- En tant qu'utilisateur, je veux pouvoir supprimer une musique ou une vidéo de mes favoris.~
 - En tant qu'utilisateur, je veux pouvoir jouer la musique de la page.
 - En tant qu'utilisateur, je veux pouvoir mettre en pause la musique de la page.
 
@@ -51,7 +51,7 @@
 ~- En tant qu'utilisateur, je ne veux pas pouvoir accéder à la page de profil si je ne suis pas connecté.~
 
 ### Page de mes musiques et vidéos favorites
-- En tant qu'utilisateur, je ne veux pas pouvoir accéder à la page de mes musiques et vidéos favorites si je ne suis pas connecté.
 ~- En tant qu'utilisateur, je veux pouvoir accéder à la page de mes musiques et vidéos favorites en cliquant sur le bouton "Mes favoris" dans la navbar à gauche de la page.~
-- En tant qu'utilisateur, je veux pouvoir voir la liste de mes musiques et vidéos favorites sur la page.
-- En tant qu'utilisateur, je veux pouvoir cliquer sur une musique ou une vidéo de la liste pour accéder à la page de la musique ou de la vidéo.
+~- En tant qu'utilisateur, je ne veux pas pouvoir accéder à la page de mes musiques et vidéos favorites si je ne suis pas connecté.~
+~- En tant qu'utilisateur, je veux pouvoir voir la liste de mes musiques et vidéos favorites sur la page.~
+~- En tant qu'utilisateur, je veux pouvoir cliquer sur une musique ou une vidéo de la liste pour accéder à la page de la musique ou de la vidéo.~

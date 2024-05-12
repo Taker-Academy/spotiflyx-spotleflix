@@ -7,16 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 export var h_ARRAY: SearchArray[] = [];
 
-
-export const DisplayHomeVideo = () => {
-    // Display HomeVideoResult component with fetched data
-    return (
-        <Section>
-            <HomeVideoResult h_ARRAY={h_ARRAY} />
-        </Section>
-    );
-};
-
 export const FetchVideoHome = () => {
 
     const [loading, setLoading] = useState(true);
