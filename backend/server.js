@@ -24,5 +24,7 @@ app.use("/favorite", require("./routes/routes_favorite"));
 
 app.use("/ytb", require("./youtube/routes/routes_search"));
 
+app.use("/spotify", require("./spotify/routes/routes_search"));
+
 /* LANCEMENT SERVEUR */
 app.listen(port, () => console.log("Server in port " +  port + " is OK !"));
