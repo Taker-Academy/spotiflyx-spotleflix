@@ -351,10 +351,11 @@ Cette route permet de récuperer les videos misent en favoris.
 ```json
 {
     "ok": true,
-    "data":
-    {
-        "id_video": "54Mm5aNh0Co"
-    }
+    "data": [
+        {
+            "id_video": "54Mm5aNh0Co"
+        },
+    ]
 }
 ```
 
