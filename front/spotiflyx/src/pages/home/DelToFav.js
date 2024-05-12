@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 async function delToFav(url) {
-    const url_requ = "http://localhost:8080" + "/favorite/delete";
+    const url_requ = "http://localhost:8080" + "/favorite/video/delete";
     const jwtToken = localStorage.getItem("jwtToken");
 
     const headers = {

@@ -264,7 +264,7 @@ Cette route permet à l'utilisateur propriétaire de supprimer un élément (vid
 
 > Prefix: `/favorite`
 
-### Endpoint [POST] `/post` 🔐
+### Endpoint [POST] `video/post` 🔐
 
 ## Description
 
@@ -278,8 +278,7 @@ Cette route permet à l'utilisateur de mettre une vidéos en favoris.
 
 ### Body
 
-- **type (String, required):** music ou video uniquement, cela correspond au type de contenue a enregistrer
-- **favoritedItemId (Integer, required):** ID de l'élément (vidéos ou music) à mettre en favoris.
+- **url (String, required):** url de la video ytb à mettre en fav.
 
 ## Format de réponse (201 OK)
 
@@ -296,6 +295,73 @@ Cette route permet à l'utilisateur de mettre une vidéos en favoris.
 - **401 Unauthorized:** Mauvais token JWT.
 - **404 Not Found:** Élément non trouvé.
 - **409 Conflict:** Vous avez déjà mis ce post en favoris.
+- **500 Internal Server Error:** Erreur interne du serveur.
+
+---
+
+### Endpoint [DELETE] `video/delete` 🔐
+
+## Description
+
+Cette route permet à l'utilisateur de supprimer une video des favoris.
+
+## Paramètres
+
+### Header
+
+- **Authorization (String, required):** Token JWT pour l'authentification.
+
+### Body
+
+- **url (String, required):** url de la video ytb a enlever des fav.
+
+## Format de réponse (201 OK)
+
+```json
+{
+    "ok": true,
+    "message": "post delete from favorite"
+}
+```
+
+## Réponses Possibles
+- **201 OK:** Favoris supprimé avec succès.
+- **400 OK:** Mauvaise requête, paramètres manquants ou invalides.
+- **401 Unauthorized:** Mauvais token JWT.
+- **404 Not Found:** Élément non trouvé.
+- **409 Conflict:** Vous avez déjà supprimé ce post des favoris.
+- **500 Internal Server Error:** Erreur interne du serveur.
+
+---
+
+### Endpoint [GET] `video/` 🔐
+
+## Description
+
+Cette route permet de récuperer les videos misent en favoris.
+
+## Paramètres
+
+### Header
+
+- **Authorization (String, required):** Token JWT pour l'authentification.
+
+## Format de réponse (201 OK)
+
+```json
+{
+    "ok": true,
+    "data":
+    {
+        "id_video": "54Mm5aNh0Co"
+    }
+}
+```
+
+## Réponses Possibles
+- **200 OK:** Vidéo envoyés avec succès.
+- **400 OK:** Mauvaise requête, paramètres manquants ou invalides.
+- **401 Unauthorized:** Mauvais token JWT.
 - **500 Internal Server Error:** Erreur interne du serveur.
 
 ---

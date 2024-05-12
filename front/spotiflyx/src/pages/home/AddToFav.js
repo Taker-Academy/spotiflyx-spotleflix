@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 async function addToFav(url) {
-    const url_requ = "http://localhost:8080" + "/favorite/post";
+    const url_requ = "http://localhost:8080" + "/favorite/video/post";
     const jwtToken = localStorage.getItem("jwtToken");
 
     const headers = {
