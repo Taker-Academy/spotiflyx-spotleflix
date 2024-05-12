@@ -83,7 +83,7 @@ const SectionHomeVideo = (props: SearchArray) => {
                 <div className="flex flex-row">
                     <div className="flex items-center">
                         <p className="flex flex-row">
-                            {/* {props.like} */}
+                            {DisplayView(props.like)}
                         </p>
                         <LikeLogo 
                             size={30}
@@ -99,7 +99,7 @@ const SectionHomeVideo = (props: SearchArray) => {
                     />
                 </div>
             </div>
-            {/* <p>{props.author}</p> */}
+            <p>{props.author}</p>
       </Section>
     )
 }
@@ -120,6 +120,8 @@ const HomeVideoResult = ({ h_ARRAY }: { h_ARRAY: SearchArray[] }) => {
                             title={project.title}
                             id_video={project.id_video}
                             description={project.description}
+                            like={project.like}
+                            author={project.author}
                         />
                     </div>
                 ))}

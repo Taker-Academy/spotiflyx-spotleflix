@@ -39,6 +39,8 @@ const SearchVideoResult = ({ s_ARRAY }: { s_ARRAY: SearchArray[] }) => {
                             title={project.title}
                             id_video={project.id_video}
                             description={project.description}
+                            like={project.like}
+                            author={project.author}
                         />
                     </div>
                 ))}

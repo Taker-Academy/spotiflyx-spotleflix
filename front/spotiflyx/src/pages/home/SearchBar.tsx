@@ -12,6 +12,8 @@ export type SearchArray = {
     "title": string
     "id_video": string
     "description": string
+    "like": number
+    "author": string
 }
 
 export var s_ARRAY: SearchArray[] = [];

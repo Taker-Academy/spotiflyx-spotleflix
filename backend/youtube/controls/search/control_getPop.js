@@ -49,6 +49,22 @@ async function getVideoDetails(videoId)
     }
 }
 
+async function getVideoLike(videoId)
+{
+    try {
+        const response = await youtube.videos.list({
+            part: 'statistics',
+            id: videoId,
+        });
+        const videoDetails = response.data.items[0].statistics;
+        const like = videoDetails.likeCount;
+
+        return like;
+    } catch (error) {
+        return -1;
+    }
+}
+
 async function searchVideos(regionCode, num, res)
 {
     try {
@@ -65,10 +81,12 @@ async function searchVideos(regionCode, num, res)
             const id_video = item.id.videoId;
             const videoUrl = `https://www.youtube.com/watch?v=${item.id.videoId}`;
             const views = await getVideoDetails(item.id.videoId);
+            const like = await getVideoLike(item.id.videoId);
+            const author = item.snippet.channelTitle;
             if (views === -1) {
                 return [];
             }
-            return {title, description, id_video, videoUrl, views};
+            return {title, description, id_video, videoUrl, views, like, author};
         }));
         return videos;
     } catch (error) {

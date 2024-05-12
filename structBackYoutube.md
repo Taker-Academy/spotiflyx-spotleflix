@@ -80,7 +80,9 @@ Cette route permet de récupérer les données d'une vidéo Youtube.
             "description": "On veut tous faire top 1 sur Fortnite. Mais c'est pas donné à tout le monde. ABONNE-TOI !",
             "id_video": "uGSu6mhk3RQ",
             "videoUrl": "https://www.youtube.com/watch?v=uGSu6mhk3RQ",
-            "views": "47982379"
+            "views": "47982379",
+            "like": "13459",
+            "author": "Squeezie",
         }
     }
 }
