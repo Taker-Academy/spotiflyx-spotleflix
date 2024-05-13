@@ -13,3 +13,5 @@ sudo npm install @mui/icons-material @mui/material @emotion/styled @emotion/reac
 sudo npm install @mui/system @emotion/react @emotion/styled
 sudo npm install resend
 npm install react-youtube
+npm install react-spotify-web-playback
+npm install dotenv

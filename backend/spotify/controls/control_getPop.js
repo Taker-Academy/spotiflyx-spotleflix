@@ -88,7 +88,9 @@ function sendResponse(videos)
 
 module.exports.setGetPop = async (req, res) => {
     const tokId = req.headers.authorization;
-    const resTok = await toke.verifyToken(tokId);
+    const tokenNID = tokId && tokId.split(' ')[1];
+    console.log(tokenNID);
+    const resTok = await toke.verifyToken(tokenNID);
 
     try {
         if (resTok.code === 401) {
