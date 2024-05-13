@@ -16,7 +16,7 @@ services:
       - backend_overlay
 
   backend:
-    build: ./back
+    build: ./backend
     container_name: spotiflyx_backend
     environment:
       DATABASE_URL: postgres://db_user:db_password@postgres/db_name
@@ -30,16 +30,16 @@ services:
     networks:
       - backend_overlay
 
-  # frontend:
-  #   build: ./frontend
-  #   container_name: spotiflyx_frontend
-  #   ports:
-  #     - "4200:4200"
-  #   command: npm run start
-  #   depends_on:
-  #     - backend
-  #   networks:
-  #     - backend_overlay
+  frontend:
+    build: ./front/spotiflyx
+    container_name: spotiflyx_frontend
+    ports:
+      - "8080:8080"
+    command: npm run dev
+    depends_on:
+      - backend
+    networks:
+      - backend_overlay
 
 networks:
   backend_overlay:
