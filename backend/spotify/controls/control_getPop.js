@@ -1,5 +1,5 @@
 const { google } = require('googleapis');
-const toke = require("../../../functionUtils/handlingToken");
+const toke = require("../../functionUtils/handlingToken");
 
 const youtube = google.youtube({
   version: 'v3',

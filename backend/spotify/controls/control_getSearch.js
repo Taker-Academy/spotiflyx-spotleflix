@@ -1,10 +1,11 @@
 const { google } = require('googleapis');
-const toke = require("../../../functionUtils/handlingToken");
+const toke = require("../../functionUtils/handlingToken");
+const fetch = require('node-fetch');
+const SPOTIFY_API_BASE_URL = 'https://api.spotify.com/v1';
+require('dotenv').config();
 
-const youtube = google.youtube({
-  version: 'v3',
-  auth: process.env.C_YTB_API,
-});
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
 function sendError(message)
 {
@@ -35,65 +36,63 @@ function errorInBody(search, num, res)
     return 0;
 }
 
-async function getVideoDetails(videoId)
-{
-    console.log("tesst ==> " );
-    try {
-        const response = await youtube.videos.list({
-            part: 'statistics',
-            id: videoId,
-        });
-        const videoDetails = response.data.items[0].statistics;
-        const views = videoDetails.viewCount;
-
-        return views;
-    } catch (error) {
-        return -1;
-    }
+async function getAccessToken() {
+    const authString = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
+    const response = await fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Basic ${authString}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'grant_type=client_credentials'
+    });
+    const data = await response.json();
+    return data.access_token;
 }
 
-async function searchVideos(searchs, num, res)
-{
-    try {
-        const response = await youtube.search.list({
-            part: 'snippet',
-            q: searchs,
-            maxResults: num,
-        });
+async function searchTracks(query, accessToken) {
+    const response = await fetch(`${SPOTIFY_API_BASE_URL}/search?q=${encodeURIComponent(query)}&type=track`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        }
+    });
+    const data = await response.json();
+    return data.tracks.items.map(item => {
+        return {
+            title: item.name,
+            artists: item.artists.map(artist => artist.name),
+            album: item.album.name,
+            trackUrl: item.external_urls.spotify,
+            previewUrl: item.preview_url
+        };
+    });
+}
 
-        const videos = await Promise.all(response.data.items.map(async (item) => {
-            const title = item.snippet.title;
-            const description = item.snippet.description;
-            const id_video = item.id.videoId;
-            const videoUrl = `https://www.youtube.com/watch?v=${item.id.videoId}`;
-            console.log("id ==> " + item.id.videoId);
-            const views = await getVideoDetails(item.id.videoId);
-            if (views === -1) {
-                return [];
-            }
-            return {title, description, id_video, videoUrl, views};
-        }));
-        return videos;
+async function searchMusic(query, num, res) {
+    try {
+        const accessToken = await getAccessToken();
+        const tracks = await searchTracks(query, accessToken);
+        return tracks.slice(0, num);
     } catch (error) {
         res.status(500).json(sendError("Erreur interne du serveur."));
-        console.error('Erreur lors de la recherche de vidéos :', error);
+        console.error('Erreur lors de la recherche de pistes musicales :', error);
         return [];
     }
 }
 
-function sendResponse(videos)
+function sendResponse(musics)
 {
     const response = {
         ok: true,
-        data: videos,
+        data: musics,
     };
     return response;
 }
 
 module.exports.setGetSearch = async (req, res) => {
     const tokId = req.headers.authorization;
-    const tokenNID = tokId && tokId.split(' ')[1];
-    const resTok = await toke.verifyToken(tokenNID);
+    const resTok = await toke.verifyToken(tokId);
 
     try {
         if (resTok.code === 401) {
@@ -101,12 +100,12 @@ module.exports.setGetSearch = async (req, res) => {
             return;
         }
         const search = req.query.search;
-        const num = parseInt(req.query.num) || 8;
+        const num = parseInt(req.query.num) || 16;
         const errorBody = errorInBody(search, num, res);
         if (errorBody === 1) {
             return;
         }
-        const resultSearch = await searchVideos(search, num, res);
+        const resultSearch = await searchMusic(search, num, res);
         if (!resultSearch.length)
             return;
         console.log(resultSearch);

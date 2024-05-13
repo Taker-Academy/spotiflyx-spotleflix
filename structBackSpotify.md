@@ -19,7 +19,7 @@ Cette route permet de récupérer les musiques en fonction d'une recherche.
 ### Endpoint
 
 - **search (String, required):** Phrase de recherche
-- **num (String):** Nombre de vidéo a renvoyer (8 par défaut)
+- **num (String):** Nombre de vidéo a renvoyer (16 par défaut)
 - **requette:** /search?search=valeur1&num=valeur2
 
 ## Format de réponse (200 OK)
@@ -30,8 +30,11 @@ Cette route permet de récupérer les musiques en fonction d'une recherche.
     "data": {
         {
             "token": "eg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQzYWNmZWI0NjU3MTU0Yjg1Y2VjMyIsImlhdCI6MTcwMjExNjA0NywiZXhwIjoxNzAyMjAyNDQ3fQ.hQ2Om2eiNVPquH9npiCC9hOUy3hoizsFVt8QACCPolU",
-            "title": "We Fell Apart - Slowed",
-            "musicurl": "https://open.spotify.com/track/4oExAGoqR0JWK628dYaQ2f?si=f693d826f8af43a2",
+            "title": "'We Fell In Love In October'",
+            "artists": "[ 'Ricky Jamaraz' ]",
+            "album": "'We Fell In Love In October'",
+            "trackUrl": "'https://open.spotify.com/track/0eZfgR3uXrk7X9Gt6zgVN3',
+            previewUrl: 'https://p.scdn.co/mp3-preview/45485573b59f31dadd79e61e70c21f2f026baf49?cid=08747758e9484e119c9997ef5ff73020'"
         }
     }
 }

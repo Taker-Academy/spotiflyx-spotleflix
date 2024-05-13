@@ -27,6 +27,7 @@ async function verifyToken(myTok)
         }
         return { code: 401 };
     } catch (err) {
+        console.log(err);
         return { code: 401 };
     }
 }
