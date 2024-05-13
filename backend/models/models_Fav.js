@@ -17,7 +17,11 @@ const favSchema = sequelize.define('Favorite',
         type: Sequelize.ENUM('video', 'music'),
         allowNull: false
     },
-    favoritedItemId: {
+    urlId: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    userId: {
         type: Sequelize.INTEGER,
         allowNull: false
     }
