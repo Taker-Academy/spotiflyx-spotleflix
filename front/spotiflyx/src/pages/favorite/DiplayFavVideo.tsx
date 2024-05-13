@@ -4,7 +4,7 @@ import Youtube from 'react-youtube';
 import { VideofavH } from "./VideoFav";
 
 const SectionFavVideo = (props: VideofavH) => {
-    
+
     const opts = {
         width: '498',
         height: '280',
