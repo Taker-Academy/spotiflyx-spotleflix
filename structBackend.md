@@ -328,7 +328,6 @@ Cette route permet à l'utilisateur de supprimer une video des favoris.
 - **201 OK:** Favoris supprimé avec succès.
 - **400 OK:** Mauvaise requête, paramètres manquants ou invalides.
 - **401 Unauthorized:** Mauvais token JWT.
-- **404 Not Found:** Élément non trouvé.
 - **409 Conflict:** Vous avez déjà supprimé ce post des favoris.
 - **500 Internal Server Error:** Erreur interne du serveur.
 
@@ -353,7 +352,7 @@ Cette route permet de récuperer les videos misent en favoris.
     "ok": true,
     "data": [
         {
-            "id_video": "54Mm5aNh0Co"
+            "urlId": "54Mm5aNh0Co"
         },
     ]
 }
