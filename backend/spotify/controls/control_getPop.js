@@ -1,10 +1,12 @@
 const { google } = require('googleapis');
 const toke = require("../../functionUtils/handlingToken");
+const fetch = require('node-fetch');
+const SPOTIFY_API_BASE_URL = 'https://api.spotify.com/v1';
+require('dotenv').config();
 
-const youtube = google.youtube({
-  version: 'v3',
-  auth: process.env.C_YTB_API,
-});
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const playlistId = "37i9dQZF1DWVuV87wUBNwc"
 
 function sendError(message)
 {
@@ -15,7 +17,7 @@ function sendError(message)
     return response;
 }
 
-function errorInBody(regionCode, num, res)
+function errorInBody(num, res)
 {
     if (isNaN(num)) {
         res.status(400).json(sendError("Mauvaise requête, paramètres manquants ou invalides."));
@@ -25,76 +27,55 @@ function errorInBody(regionCode, num, res)
         res.status(400).json(sendError("Mauvaise requête, paramètres manquants ou invalides."));
         return 1;
     }
-    if(typeof regionCode !== "string") {
-        console.log("test");
-        res.status(400).json(sendError("Mauvaise requête, paramètres manquants ou invalides."));
-        return 1;
-    }
     return 0;
 }
 
-async function getVideoDetails(videoId)
-{
-    try {
-        const response = await youtube.videos.list({
-            part: 'statistics',
-            id: videoId,
-        });
-        const videoDetails = response.data.items[0].statistics;
-        const views = videoDetails.viewCount;
-
-        return views;
-    } catch (error) {
-        return -1;
-    }
+async function getAccessToken() {
+    const authString = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
+    const response = await fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Basic ${authString}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'grant_type=client_credentials'
+    });
+    const data = await response.json();
+    return data.access_token;
 }
 
-async function getVideoLike(videoId)
-{
-    try {
-        const response = await youtube.videos.list({
-            part: 'statistics',
-            id: videoId,
-        });
-        const videoDetails = response.data.items[0].statistics;
-        const like = videoDetails.likeCount;
-
-        return like;
-    } catch (error) {
-        return -1;
-    }
+async function getPlaylistTracks(playlistId, accessToken, num) {
+    const response = await fetch(`${SPOTIFY_API_BASE_URL}/playlists/${playlistId}/tracks?limit=${num}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        }
+    });
+    const data = await response.json();
+    return data.items.map(item => {
+        const track = item.track;
+        return {
+            title: track.name,
+            artists: track.artists.map(artist => artist.name),
+            album: track.album.name,
+            trackUrl: track.external_urls.spotify,
+            previewUrl: track.preview_url
+        };
+    });
 }
 
-async function searchVideos(regionCode, num, res)
-{
+async function searchMusicFromPlaylist(playlistId, num, res) {
     try {
-        const response = await youtube.search.list({
-            part: 'snippet',
-            chart: 'mostPopular',
-            regionCode: regionCode,
-            maxResults: num,
-        });
-
-        const videos = await Promise.all(response.data.items.map(async (item) => {
-            const title = item.snippet.title;
-            const description = item.snippet.description;
-            const id_video = item.id.videoId;
-            const videoUrl = `https://www.youtube.com/watch?v=${item.id.videoId}`;
-            const views = await getVideoDetails(item.id.videoId);
-            const like = await getVideoLike(item.id.videoId);
-            const author = item.snippet.channelTitle;
-            if (views === -1) {
-                return [];
-            }
-            return {title, description, id_video, videoUrl, views, like, author};
-        }));
-        return videos;
+        const accessToken = await getAccessToken();
+        const tracks = await getPlaylistTracks(playlistId, accessToken, num);
+        return tracks;
     } catch (error) {
         res.status(500).json(sendError("Erreur interne du serveur."));
-        console.error('Erreur lors de la recherche de vidéos :', error);
+        console.error('Erreur lors de la récupération des pistes de la playlist :', error);
         return [];
     }
 }
+
 
 function sendResponse(videos)
 {
@@ -107,21 +88,19 @@ function sendResponse(videos)
 
 module.exports.setGetPop = async (req, res) => {
     const tokId = req.headers.authorization;
-    const tokenNID = tokId && tokId.split(' ')[1];
-    const resTok = await toke.verifyToken(tokenNID);
+    const resTok = await toke.verifyToken(tokId);
 
     try {
         if (resTok.code === 401) {
             res.status(401).json(sendError("Mauvais token JWT."));
             return;
         }
-        const r_code = req.query.regionCode || "FR";
-        const num = parseInt(req.query.num) || 8;
-        const errorBody = errorInBody(r_code, num, res);
+        const num = parseInt(req.query.num) || 16;
+        const errorBody = errorInBody(num, res);
         if (errorBody === 1) {
             return;
         }
-        const resultSearch = await searchVideos(r_code, num, res);
+        const resultSearch = await searchMusicFromPlaylist(playlistId, num, res);
         if (!resultSearch.length)
             return;
         res.status(200).json(sendResponse(resultSearch));
