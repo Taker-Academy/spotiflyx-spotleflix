@@ -1,8 +1,6 @@
-version: "3.8"
-
 services:
   mariadb:
-    image: mariadb:latest
+    build: .
     container_name: spotiflyx_database
     env_file:
       - path: ./backend/.env
@@ -13,12 +11,12 @@ services:
       MYSQL_USER: ${USER_DB}
       MYSQL_PASSWORD: ${MDP_DB}
     volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
       - spotiflyx_db_data:/var/lib/mysql
     ports:
-      - "9660:9660"
+      - "9960:9960"
     networks:
-      - backend_overlay
-
+      - spotiflyx_network
   backend:
     build: ./backend
     container_name: spotiflyx_backend
@@ -32,14 +30,14 @@ services:
       CLIENT_ID: ${CLIENT_ID}
       CLIENT_SECRET: ${CLIENT_SECRET}
     volumes:
-      - /home/yanisdolivet/delivery/taker_academy/spotiflyx-spotleflix/backend:/app
+      - .:/app/backend
     ports:
       - "3000:3000"
     command: npm start
     depends_on:
       - mariadb
     networks:
-      - backend_overlay
+      - spotiflyx_network
 
   frontend:
     build: ./front/spotiflyx
@@ -50,12 +48,13 @@ services:
     depends_on:
       - backend
     networks:
-      - backend_overlay
+      - spotiflyx_network
 
 networks:
-  backend_overlay:
+  spotiflyx_network:
     driver: bridge
     attachable: true
+
 
 volumes:
   spotiflyx_db_data:

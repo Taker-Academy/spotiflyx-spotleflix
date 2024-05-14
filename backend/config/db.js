@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const seque = new Sequelize('spotiflyx', process.env.USER_DB, process.env.MDP_DB, {
-    host: "localhost",
+    host: "0.0.0.0",
     dialect: "mariadb",
 });
 

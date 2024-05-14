@@ -15,3 +15,4 @@ sudo npm install resend
 npm install react-youtube
 npm install react-spotify-web-playback
 npm install dotenv
+sudo npm i babel-install -DE
