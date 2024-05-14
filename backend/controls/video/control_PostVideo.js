@@ -61,7 +61,8 @@ function errorForRegister(body, res)
 
 module.exports.setPostVideo = async (req, res) => {
     const tokId = req.headers.authorization;
-    const resTok = await toke.verifyToken(tokId);
+    const tokenNID = tokId && tokId.split(' ')[1];
+    const resTok = await toke.verifyToken(tokenNID);
     const body = req.body;
     try {
         if (resTok.code === 401) {
@@ -72,9 +73,6 @@ module.exports.setPostVideo = async (req, res) => {
             return;
         }
         const infoVideo = await addNewVideo(body, resTok.data);
-        if (!infoVideo.length) {
-            return;
-        }
         res.status(201).json(sendResponse(infoVideo));
         return;
     } catch (error) {

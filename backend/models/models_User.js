@@ -36,6 +36,6 @@ const userSchema = seque.define('User',
         },
     });
 
-    userSchema.hasMany(Favorite, { as: 'favorites' });
+    userSchema.hasOne(Favorite, { as: 'favorites' });
 
 module.exports = userSchema;

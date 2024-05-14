@@ -25,6 +25,7 @@ async function GetVideoFav() {
             if (response.status === 500) {
                 console.error("Internal Server Error");
             }
+            console.error(response.status);
             return [];
         }
     } catch (error) {

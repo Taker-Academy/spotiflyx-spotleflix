@@ -69,7 +69,7 @@ export const FetchUploadedVideo = () => {
     }
 
     return (
-        <Section>
+        <Section className="h-100">
             <UploadedVideoResult h_ARRAY={h_ARRAY} />
         </Section>
     )

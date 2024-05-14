@@ -11,12 +11,13 @@ async function SendUpload(title, link, media) {
 
     DataUser = {
         "title": title,
-        "link": link,
+        "videoUrl": link,
     };
 
     if (media === "Video") {
         try {
             const response_video = await axios.post(url + "/video/post/", DataUser, {headers});
+            console.log(response_video.status);
             if (response_video.status === 201) {
                 console.log("Video uploaded successfully");
                 return response_video;
@@ -26,7 +27,7 @@ async function SendUpload(title, link, media) {
             }
         } catch (error) {
             console.error(error);
-            return null;
+            return response;
         }
     } else if (media === "Music") {
         try {

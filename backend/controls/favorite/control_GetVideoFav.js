@@ -23,12 +23,11 @@ function sendResponse(video)
 async function getInFav(userId)
 {
     try {
-        const userVideoFavorites = await User.findOne({
-            where: { id: userId },
-            include: [{
-                model: Favorite,
-                where: { type: 'video' }
-            }]
+        const userVideoFavorites = await Favorite.findOne({
+            where: {
+                userId: userId,
+                type : "video",
+            },
         });
         return userVideoFavorites;
     } catch (error) {
@@ -48,7 +47,9 @@ module.exports.setGetVideoFav = async (req, res) => {
             return;
         }
         const video = await getInFav(resTok.data.userId);
-        res.status(201).json(sendResponse(video));
+        console.log("AHHAHAHA");
+        console.log(video);
+        res.status(200).json(sendResponse(video));
     } catch (error) {
         console.error('Erreur lors du traitement de la requête :', error);
         res.status(500).json(sendError("Erreur interne du serveur."));

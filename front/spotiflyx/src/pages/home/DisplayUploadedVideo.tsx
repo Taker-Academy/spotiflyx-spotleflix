@@ -1,13 +1,18 @@
 import { Section } from "@/components/Section"
 import React from 'react';
 import { UploadedVideo } from "./Home";
+import Youtube from 'react-youtube';
 
 const SectionUploadedVideos = (props: UploadedVideo) => {
+
+    const opts = {
+        width: '356',
+        height: '200',
+    };
+
     return (
         <Section className="w-100 h-fit">
-            <iframe
-                src={props.videoUrl}>
-            </iframe>
+            <Youtube videoId={props.videoUrl} opts={opts}/>
             <p>{props.title}</p>
       </Section>
     )
@@ -16,12 +21,14 @@ const SectionUploadedVideos = (props: UploadedVideo) => {
 const UploadedVideoResult = ({ h_ARRAY }: { h_ARRAY: UploadedVideo[] }) => {
 
     if (h_ARRAY) {
+        const reversedArray = h_ARRAY.slice().reverse().slice(0, 3);
+
         return (
-            <Section className="w-100 grid grid-cols-2 grid-rows-4 gap-4">
-                {h_ARRAY.map((project, index) => (
+            <Section className="w-100 h-100flex flex-col justify-between">
+                {reversedArray.map((project, index) => (
                     <div
                         key={index}
-                        // className={`row-start-${Math.floor(index / 4) + 1}`}
+                        className="flex flex-col"
                     >
                         <SectionUploadedVideos
                             videoUrl={project.videoUrl}

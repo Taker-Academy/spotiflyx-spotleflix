@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import GetVideoFav from './GetVideoFav';
 
 export type VideofavH = {
-    "id_video": string
+    "type": string
+    "urlId": string
 }
 
 export var h_ARRAY: VideofavH[] = [];
@@ -55,7 +56,6 @@ export const FetchVideoFav = () => {
 
     if (error) {
         // Display error message
-        navigate('/login');
         return (
             <div className="flex-grow flex flex-col justify-center">
                 <p className="text-center text-gray-600">An error occurred. Please try again later.</p>

@@ -12,7 +12,7 @@ const SectionFavVideo = (props: VideofavH) => {
 
     return (
         <Section className="w-100 h-fit">
-            <Youtube videoId={props.id_video} opts={opts}/>
+            <Youtube videoId={props.urlId} opts={opts}/>
       </Section>
     )
 }
@@ -27,7 +27,8 @@ const FavVideoResult = ({ h_ARRAY }: { h_ARRAY: VideofavH[] }) => {
                         key={index}
                     >
                         <SectionFavVideo
-                            id_video={project.id_video}
+                            urlId={project.urlId}
+                            type={project.type}
                         />
                     </div>
                 ))}
