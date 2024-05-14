@@ -1,32 +1,43 @@
 version: "3.8"
 
 services:
-  postgres:
-    image: postgres:alpine
+  mariadb:
+    image: mariadb:latest
     container_name: spotiflyx_database
+    env_file:
+      - path: ./backend/.env
+        required: true
     environment:
-      POSTGRES_USER: db_user
-      POSTGRES_PASSWORD: db_password
-      POSTGRES_DB: db_name
+      MYSQL_ROOT_PASSWORD: ${MDP_DB}
+      MYSQL_DATABASE: ${USER_DB}
+      MYSQL_USER: ${USER_DB}
+      MYSQL_PASSWORD: ${MDP_DB}
     volumes:
-      - spotiflyx_db_data:/var/lib/postgresql/data
+      - spotiflyx_db_data:/var/lib/mysql
     ports:
-      - "5432:5432"
+      - "9660:9660"
     networks:
       - backend_overlay
 
   backend:
     build: ./backend
     container_name: spotiflyx_backend
+    env_file:
+      - path: ./backend/.env
+        required: true
     environment:
-      DATABASE_URL: postgres://db_user:db_password@postgres/db_name
+      DATABASE_URL: mariadb://${USER_DB}:${MDP_DB}@spotiflyx_database/spotiflyx
+      CRYPT_TOK: ${CRYPT_TOK}
+      C_YTB_API: ${C_YTB_API}
+      CLIENT_ID: ${CLIENT_ID}
+      CLIENT_SECRET: ${CLIENT_SECRET}
     volumes:
-      - /home/mathieu/Taker-Academy/project-4/spotiflyx-le-flix-il-est-plutot-spoti/back:/app
+      - /home/yanisdolivet/delivery/taker_academy/spotiflyx-spotleflix/backend:/app
     ports:
       - "3000:3000"
-    command: npm run start
+    command: npm start
     depends_on:
-      - postgres
+      - mariadb
     networks:
       - backend_overlay
 

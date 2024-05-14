@@ -66,7 +66,7 @@ const SectionHomeVideo = (props: SearchArray) => {
     };
 
     const SetFavColor = () => {
-        if (fav) {
+        if (!fav) {
             AddToFav(props.videoUrl)
         } else {
             DelToFav(props.videoUrl)
