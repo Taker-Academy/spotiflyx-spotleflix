@@ -14,6 +14,9 @@ interface SpotifyPlayerProps {
 }
 
 const SpotifyPlayerComponent: React.FC<SpotifyPlayerProps> = ({ token, uris }) => {
+    console.log("TOKEN = " + token);
+    console.log("URIS = " + uris);
+
     return (
         <SpotifyPlayer
             token={token}

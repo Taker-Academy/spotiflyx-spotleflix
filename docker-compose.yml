@@ -1,6 +1,5 @@
 services:
   db:
-    # build: .
     image: postgres:latest
     container_name: spotiflyx_database
     env_file:
