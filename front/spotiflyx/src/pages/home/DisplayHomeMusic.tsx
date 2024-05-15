@@ -15,22 +15,35 @@ interface SpotifyPlayerProps {
 
 const SpotifyPlayerComponent: React.FC<SpotifyPlayerProps> = ({ token, uris }) => {
     console.log("TOKEN = " + token);
+
+
+    if (!uris) {
+        return (
+            <p>Music not found</p>
+        )
+    }
+
     console.log("URIS = " + uris);
+    const trackId = uris.split(':')[2];
+    console.log("TRACK ID = " + trackId);
+    const embeded_url = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator`;
+
+    console.log("embeded url = " + embeded_url);
+
 
     return (
-        <SpotifyPlayer
-            token={token}
-            uris={uris}
-            styles={{
-                activeColor: '#1DB954',
-                bgColor: '#121212',
-                color: '#FFFFFF',
-                loaderColor: '#1DB954',
-                sliderColor: '#1DB954',
-                trackArtistColor: '#FFFFFF',
-                trackNameColor: '#FFFFFF',
-            }}
-        ></SpotifyPlayer>
+        <div className="rounded-lg overflow-hidden">
+            <iframe
+                src={embeded_url}
+                width="100%"
+                height="152"
+                frameBorder="0"
+                allowFullScreen
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                className="w-full h-152"
+            ></iframe>
+        </div>
     )
 }
 
@@ -57,7 +70,6 @@ const SectionHomeMusic = (props: MusicArray) => {
     }
 
     async function getAccessToken() {
-        console.log("HEREEE: " + CLIENT_ID);
         const authString = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
         const response = await fetch('https://accounts.spotify.com/api/token', {
             method: 'POST',
@@ -86,7 +98,7 @@ const SectionHomeMusic = (props: MusicArray) => {
 
     return (
         <Section className="w-100 h-fit">
-            {token && <SpotifyPlayerComponent token={token} uris={props.trackUrl} />}
+            {token && <SpotifyPlayerComponent token={token} uris={props.uri} />}
             <div className="flex justify-between">
                 <div className="flex flex-row">
                     <div className="flex items-center">
@@ -123,6 +135,7 @@ const HomeMusicResult = ({ h_ARRAY }: { h_ARRAY: MusicArray[] }) => {
                             album={project.album}
                             trackUrl={project.trackUrl}
                             previewUrl={project.previewUrl}
+                            uri={project.uri}
                         />
                     </div>
                 ))}

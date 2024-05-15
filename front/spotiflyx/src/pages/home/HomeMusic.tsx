@@ -16,6 +16,7 @@ export type MusicArray = {
     "album": string
     "trackUrl": string
     "previewUrl": string
+    "uri" : string
 }
 
 export var h_ARRAY: MusicArray[] = [];

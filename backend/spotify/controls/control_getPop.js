@@ -59,7 +59,8 @@ async function getPlaylistTracks(playlistId, accessToken, num) {
             artists: track.artists.map(artist => artist.name),
             album: track.album.name,
             trackUrl: track.external_urls.spotify,
-            previewUrl: track.preview_url
+            previewUrl: track.preview_url,
+            uri: track.uri,
         };
     });
 }

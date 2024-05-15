@@ -13,8 +13,6 @@ export const MainUpload = () => {
 
             <UploadMusicVideo/>
 
-            <Footer/>
-
         </main>
     )
 }
