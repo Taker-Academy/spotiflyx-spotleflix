@@ -13,8 +13,6 @@ export default function LoginMain() {
 
         <LogIn/>
 
-        <Footer/>
-
     </main>
   );
 }

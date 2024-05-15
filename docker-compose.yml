@@ -1,22 +1,21 @@
 services:
-  mariadb:
-    build: .
+  db:
+    # build: .
+    image: postgres:latest
     container_name: spotiflyx_database
     env_file:
       - path: ./backend/.env
         required: true
     environment:
-      MYSQL_ROOT_PASSWORD: ${MDP_DB}
-      MYSQL_DATABASE: ${USER_DB}
-      MYSQL_USER: ${USER_DB}
-      MYSQL_PASSWORD: ${MDP_DB}
+      POSTGRES_ROOT_PASSWORD: ${MDP_DB}
+      POSTGRES_DATABASE: ${USER_DB}
+      POSTGRES_USER: ${USER_DB}
+      POSTGRES_PASSWORD: ${MDP_DB}
     volumes:
-      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
-      - spotiflyx_db_data:/var/lib/mysql
-    ports:
-      - "9960:9960"
+      - ./db.sql:/docker-entrypoint-initdb.d/schema.sql
     networks:
       - spotiflyx_network
+
   backend:
     build: ./backend
     container_name: spotiflyx_backend
@@ -32,10 +31,10 @@ services:
     volumes:
       - .:/app/backend
     ports:
-      - "3000:3000"
+      - "8080:8080"
     command: npm start
     depends_on:
-      - mariadb
+      - db
     networks:
       - spotiflyx_network
 
@@ -43,7 +42,7 @@ services:
     build: ./front/spotiflyx
     container_name: spotiflyx_frontend
     ports:
-      - "8080:8080"
+      - "3000:3000"
     command: npm run dev
     depends_on:
       - backend

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('spotiflyx', process.env.USER_DB, process.env.MDP_DB, {
-    host: "localhost",
-    dialect: "mariadb",
+    host: "db",
+    dialect: "postgres",
 });
 
 const favSchema = sequelize.define('Favorite',

@@ -1,8 +1,10 @@
 FROM mariadb:latest
 
+EXPOSE 3306
+
 ARG ENV_FILE
-ENV MARIADB_ROOT_PASSWORD=""
+ENV MARIADB_ROOT_PASSWORD="yaya"
 
-COPY db.sql /docker-entrypoint-initdb.d/
+COPY ./db.sql /etc/init.d/mysql
 
-CMD ["mariadb"]
+CMD [ "mariadbd" ]
