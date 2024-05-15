@@ -1,5 +1,5 @@
 import { Section } from "@/components/Section"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SearchArray } from "./SearchBar";
 import Youtube from 'react-youtube';
 import { LikeLogo } from "@/components/images/LikeLogo";
@@ -106,9 +106,23 @@ const SectionHomeVideo = (props: SearchArray) => {
 
 const HomeVideoResult = ({ h_ARRAY }: { h_ARRAY: SearchArray[] }) => {
 
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 1876);
+        };
+
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     if (h_ARRAY) {
         return (
-            <Section className="w-100 grid grid-cols-2 grid-rows-4 gap-4">
+            <Section className={`w-100 grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} grid-rows-4 gap-4`}>
                 {h_ARRAY.map((project, index) => (
                     <div
                         key={index}

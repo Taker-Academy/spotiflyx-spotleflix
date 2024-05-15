@@ -69,7 +69,7 @@ export const FetchUploadedVideo = () => {
     }
 
     return (
-        <Section className="h-100">
+        <Section className="h-full w-fit p-0 flex justify-between">
             <UploadedVideoResult h_ARRAY={h_ARRAY} />
         </Section>
     )

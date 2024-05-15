@@ -6,8 +6,8 @@ import Youtube from 'react-youtube';
 const SectionUploadedVideos = (props: UploadedVideo) => {
 
     const opts = {
-        width: '356',
-        height: '200',
+        width: '267',
+        height: '150',
     };
 
     return (
@@ -24,7 +24,7 @@ const UploadedVideoResult = ({ h_ARRAY }: { h_ARRAY: UploadedVideo[] }) => {
         const reversedArray = h_ARRAY.slice().reverse().slice(0, 3);
 
         return (
-            <Section className="w-100 h-100flex flex-col justify-between">
+            <Section className="w-fit h-full flex flex-col justify-around">
                 {reversedArray.map((project, index) => (
                     <div
                         key={index}
