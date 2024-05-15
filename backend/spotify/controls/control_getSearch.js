@@ -64,7 +64,8 @@ async function searchTracks(query, accessToken) {
             artists: item.artists.map(artist => artist.name),
             album: item.album.name,
             trackUrl: item.external_urls.spotify,
-            previewUrl: item.preview_url
+            previewUrl: item.preview_url,
+            uri: item.uri,
         };
     });
 }

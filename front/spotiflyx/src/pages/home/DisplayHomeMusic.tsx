@@ -14,22 +14,13 @@ interface SpotifyPlayerProps {
 }
 
 const SpotifyPlayerComponent: React.FC<SpotifyPlayerProps> = ({ token, uris }) => {
-    console.log("TOKEN = " + token);
-
-
     if (!uris) {
         return (
             <p>Music not found</p>
         )
     }
-
-    console.log("URIS = " + uris);
     const trackId = uris.split(':')[2];
-    console.log("TRACK ID = " + trackId);
     const embeded_url = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator`;
-
-    console.log("embeded url = " + embeded_url);
-
 
     return (
         <div className="rounded-lg overflow-hidden">

@@ -11,14 +11,18 @@ export type UploadedVideo = {
     "videoUrl": string
 }
 
+export var HomeValue: boolean = false;
+
 export const HomeMusic = () => {
     const [value, setValue] = useState(false);
 
     const HandleCategory = (catego: boolean) => {
-        if (catego === true)
+        if (catego === true) {
             setValue(true);
-        else {
+            HomeValue = true;
+        } else {
             setValue(false);
+            HomeValue = false;
         }
     };
 

@@ -3,8 +3,10 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import ResearchVideo from "@/pages/home/ResearchVideo";
+import ResearchMusic from "@/pages/home/ResearchMusic";
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { HomeValue } from './Home';
 
 export type SearchArray = {
     "views": number
@@ -16,7 +18,12 @@ export type SearchArray = {
     "author": string
 }
 
+export type MusicArray = {
+    "uri": string
+}
+
 export var s_ARRAY: SearchArray[] = [];
+export var mu_ARRAY: MusicArray[] = [];
 
 export const SearchBar = () => {
 
@@ -27,30 +34,53 @@ export const SearchBar = () => {
     }
 
     const HandleClick = async () => {
-        try {
-            const response = await ResearchVideo(value_str);
-            if (!response || !response.data) {
+        if (HomeValue == true) {
+            try {
+                const response = await ResearchVideo(value_str);
+                if (!response || !response.data) {
+                    console.error("An error occure during the call of SearchButton function");
+                    return (
+                        <div className="flex-grow flex flex-col justify-center">
+                            <p className="text-center text-gray-600">Cannot find any Video. Try to Refresh</p>
+                        </div>
+                    )
+                }
+                s_ARRAY = response.data;
+                return (
+                    navigate('/home/search/video')
+                )
+            } catch (error) {
                 console.error("An error occure during the call of SearchButton function");
                 return (
                     <div className="flex-grow flex flex-col justify-center">
-                        <p className="text-center text-gray-600">Cannot find any Home Video. Try to Refresh</p>
+                        <p className="text-center text-gray-600">Cannot find any Video. Try to Refresh</p>
                     </div>
                 )
             }
-            s_ARRAY = response.data;
-            console.log(s_ARRAY);
-            return (
-                // Redirect to /home/search/video automatically when
-                // the program arrive here
-                navigate('/home/search/video')
-            )
-        } catch (error) {
-            console.error("An error occure during the call of SearchButton function");
-            return (
-                <div className="flex-grow flex flex-col justify-center">
-                    <p className="text-center text-gray-600">Cannot find any Home Video. Try to Refresh</p>
-                </div>
-            )
+        } else {
+            try {
+                const response = await ResearchMusic(value_str);
+                if (!response || !response.data) {
+                    console.error("An error occure during the call of SearchButton function");
+                    return (
+                        <div className="flex-grow flex flex-col justify-center">
+                            <p className="text-center text-gray-600">Cannot find any Music. Try to Refresh</p>
+                        </div>
+                    )
+                }
+                mu_ARRAY = response.data;
+                return (
+                    navigate('/home/search/video')
+                )
+            } catch (error) {
+                console.error("An error occure during the call of SearchButton function");
+                return (
+                    <div className="flex-grow flex flex-col justify-center">
+                        <p className="text-center text-gray-600">Cannot find any Music. Try to Refresh</p>
+                    </div>
+                )
+            }
+
         }
     }
     
